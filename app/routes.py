@@ -3,9 +3,9 @@ from app import app
 from app.forms import SignUpForm
 
 @app.route('/')
-@app.route('/index')
-def index():
-    return "Main page"
+@app.route('/mainpage')
+def mainpage():
+    return render_template('mainpage.html', title='Main Page')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
