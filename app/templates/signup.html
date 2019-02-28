@@ -21,9 +21,9 @@
         </p>
 
         <p>
-            {{ form.mail.label }}<br>
-            {{ form.mail(size=32) }}<br>
-            {% for error in form.mail.errors %}
+            {{ form.email.label }}<br>
+            {{ form.email(size=32) }}<br>
+            {% for error in form.email.errors %}
             <span style="color: red;">[{{ error }}</span>
             {% endfor %}
         </p>
@@ -36,14 +36,6 @@
             {% endfor %}
         </p>
 
-
-        <p>
-            {{ form.mail.label }}<br>
-            {{ form.mail(size=32) }}<br>
-            {% for error in form.mail.errors %}
-            <span style="color: red;">[{{ error }}</span>
-            {% endfor %}
-        </p>
 
         <p>
             {{ form.username.label }}<br>

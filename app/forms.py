@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, PasswordField, BooleanField, DateField, SubmitField, IntegerField
-from wtforms.validators import DataRequired, EqualTo, ValidationError, Email
+from wtforms.validators import DataRequired, EqualTo, ValidationError, Email, Length
 from app.models import User
 
 class LoginForm(FlaskForm):
@@ -12,8 +12,8 @@ class LoginForm(FlaskForm):
 class SignUpForm(FlaskForm):
     first_name = StringField('First name', validators=[DataRequired()])
     last_name = StringField('Last name', validators=[DataRequired()])
-    mail = StringField('Email', validators=[DataRequired()])
-    tlf = IntegerField('Tlf', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired()])
+    tlf = StringField('Tlf', validators=[DataRequired(),Length(max=8), Length(min=8)])
     username = StringField('Username', validators=[DataRequired()] )
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
@@ -29,10 +29,10 @@ class SignUpForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different email address.')
 
-    @staticmethod
-    def validate_tlf(tlf):
-        if len(tlf) != 8 and tlf.isdigit() == False:
-            raise ValidationError('Please use a correct tlfnr')
+    # @staticmethod
+    #def validate_tlf(self, tlf):
+     #   if len(tlf) != 8 and tlf.isDigit() == False:
+      #      raise ValidationError('Please use a correct tlfnr. {}'.format(len(tlf)))
 
     @staticmethod
     def set_password(password):
