@@ -1,1 +1,2 @@
 FLASK_APP=kultur.py
+FLASK_ENV=development
