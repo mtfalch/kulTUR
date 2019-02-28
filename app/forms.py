@@ -4,42 +4,38 @@ from wtforms.validators import DataRequired, EqualTo, ValidationError, Email, Le
 from app.models import User
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    remember_me = BooleanField('Remember Me')
-    submit = SubmitField('Sign In')
+    username = StringField('Brukernavn', validators=[DataRequired()])
+    password = PasswordField('Passord', validators=[DataRequired()])
+    remember_me = BooleanField('Husk meg')
+    submit = SubmitField('Logg inn')
 
 class SignUpForm(FlaskForm):
-    first_name = StringField('First name', validators=[DataRequired()])
-    last_name = StringField('Last name', validators=[DataRequired()])
+    first_name = StringField('Fornavn', validators=[DataRequired()])
+    last_name = StringField('Etternavn', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired()])
-    tlf = StringField('Tlf', validators=[DataRequired(),Length(max=8), Length(min=8)])
-    username = StringField('Username', validators=[DataRequired()] )
-    password = PasswordField('Password', validators=[DataRequired()])
-    password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Sign up')
+    tlf = StringField('Telefon', validators=[DataRequired(),Length(max=8), Length(min=8)])
+    username = StringField('Brukernavn', validators=[DataRequired()] )
+    password = PasswordField('Passord', validators=[DataRequired()])
+    password2 = PasswordField('Gjenta passord', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Registrer deg')
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
-            raise ValidationError('Please use a different username.')
+            raise ValidationError('Brukernavn er allerede tatt.')
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
-            raise ValidationError('Please use a different email address.')
+            raise ValidationError('Email er allerede brukt.')
 
-    # @staticmethod
-    #def validate_tlf(self, tlf):
-     #   if len(tlf) != 8 and tlf.isDigit() == False:
-      #      raise ValidationError('Please use a correct tlfnr. {}'.format(len(tlf)))
 
     @staticmethod
     def set_password(password):
         if SignUpForm.check_password(password) == False:
-            raise ValidationError('The password must be at least 8 characters long, contain at least one uppercase letter and at '
-                        'least one number.')
+            raise ValidationError('Passordet må ha 8 tegn, og inneholde minst en stor bokstav og et tall.')
 
+# denne fungerer ikke tror jeg
     @staticmethod
     def check_password(password):
         length = False
@@ -61,5 +57,5 @@ class SignUpForm(FlaskForm):
 
 
 class EditProfileForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    username = StringField('Brukernavn', validators=[DataRequired()])
+    submit = SubmitField('Send')

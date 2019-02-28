@@ -20,7 +20,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password')
+            flash('Ugyldig brukernavn eller passord')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
@@ -44,7 +44,7 @@ def signup():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('Congratulations, you are now a registered user!')
+        flash('Gratulerer, du er nå en registrert bruker!')
         return redirect(url_for('mainpage'))
     return render_template('signup.html', title='Register', form=form)
 
@@ -62,7 +62,7 @@ def edit_profile():
     if form.validate_on_submit():
         current_user.username = form.username.data
         db.session.commit()
-        flash('Your changes have been saved.')
+        flash('Endringene dine er lagret.')
         return redirect(url_for('edit_profile'))
     elif request.method == 'GET':
         form.username.data = current_user.username
