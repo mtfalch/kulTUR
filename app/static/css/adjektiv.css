@@ -5,11 +5,8 @@ head {
 
 h1 {
 	position: sticky;
-    text-align: center;
-	font-family: sans-serif;	
+	text-align: center;
 	z-index: 2;
-}
-h2{
 	font-family: sans-serif;
 }
 
@@ -26,6 +23,11 @@ button{
 	z-index: 1;
 }
 
+#header {
+	margin:0; 
+	padding:0;
+	z-index: -1;
+}
 
 #map {
 	position:absolute;
