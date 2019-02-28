@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, PasswordField, BooleanField, DateField, SubmitField, IntegerField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, EqualTo, ValidationError, Email, Length
 from app.models import User
 
@@ -58,3 +58,8 @@ class SignUpForm(FlaskForm):
         if length and uppercase and digit:
             return True
         return False
+
+
+class EditProfileForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    submit = SubmitField('Submit')
