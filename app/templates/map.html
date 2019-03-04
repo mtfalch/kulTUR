@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block app_content %}
+
+    <!-- Viktig å lage div-plasseringen før funksjonaliteten blir kjørt -->
+    <div id='map'></div>
+<p><script type="text/javascript" src="static/js/verb.js"></script></p>
+{% endblock %}
