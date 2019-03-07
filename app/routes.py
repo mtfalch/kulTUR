@@ -12,6 +12,11 @@ from app.models import User
 def mainpage():
     return render_template('mainpage.html', title='Main Page')
 
+@app.route('/map')
+@login_required
+def map():
+    return render_template('map.html', title='Map')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
