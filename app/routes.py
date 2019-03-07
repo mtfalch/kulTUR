@@ -8,12 +8,11 @@ from app.models import User
 @app.route('/')
 @app.route('/index')
 @app.route('/mainpage')
-@login_required
+
 def mainpage():
     return render_template('mainpage.html', title='Main Page')
 
 @app.route('/map')
-@login_required
 def map():
     return render_template('map.html', title='Map')
 
@@ -39,8 +38,8 @@ def logout():
     logout_user()
     return redirect(url_for('mainpage'))
 
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
+@app.route('/registration', methods=['GET', 'POST'])
+def registration():
     if current_user.is_authenticated:
         return redirect(url_for('mainpage'))
     form = SignUpForm()
@@ -55,7 +54,7 @@ def signup():
         db.session.commit()
         flash('Gratulerer, du er nå en registrert bruker!')
         return redirect(url_for('mainpage'))
-    return render_template('signup.html', title='Register', form=form)
+    return render_template('registration.html', title='Register', form=form)
 
 @app.route('/user/<username>')
 @login_required
