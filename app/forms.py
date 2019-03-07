@@ -10,32 +10,21 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Logg inn')
 
 class SignUpForm(FlaskForm):
-    first_name = StringField('Fornavn', validators=[DataRequired()])
-    last_name = StringField('Etternavn', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired()])
-    tlf = StringField('Telefon', validators=[DataRequired(),Length(max=8), Length(min=8)])
-    username = StringField('Brukernavn', validators=[DataRequired()] )
-    password = PasswordField('Passord', validators=[DataRequired()])
-    password2 = PasswordField('Gjenta passord', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Registrer deg')
 
-    def validate_username(self, username):
-        user = User.query.filter_by(username=username.data).first()
+    def validate_username(form, field):
+        user = User.query.filter_by(username=field.data).first()
         if user is not None:
             raise ValidationError('Brukernavn er allerede tatt.')
 
-    def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first()
+    def validate_email(form, field):
+        user = User.query.filter_by(email=field.data).first()
         if user is not None:
             raise ValidationError('Email er allerede brukt.')
 
-
-    @staticmethod
-    def set_password(password):
-        if SignUpForm.check_password(password) == False:
+    def validate_password(form, field):
+        if form.check_password(field.data):
             raise ValidationError('Passordet må ha 8 tegn, og inneholde minst en stor bokstav og et tall.')
 
-# denne fungerer ikke tror jeg
     @staticmethod
     def check_password(password):
         length = False
@@ -52,9 +41,17 @@ class SignUpForm(FlaskForm):
             digit = True
 
         if length and uppercase and digit:
-            return True
-        return False
+            return False
+        return True
 
+    first_name = StringField('Fornavn', validators=[DataRequired()])
+    last_name = StringField('Etternavn', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired()])
+    tlf = StringField('Telefon', validators=[DataRequired(), Length(max=8), Length(min=8)])
+    username = StringField('Brukernavn', validators=[DataRequired()])
+    password = PasswordField('Passord', validators=[DataRequired()])
+    password2 = PasswordField('Gjenta passord', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Registrer deg')
 
 class EditProfileForm(FlaskForm):
     username = StringField('Brukernavn', validators=[DataRequired()])

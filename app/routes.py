@@ -40,7 +40,11 @@ def signup():
         return redirect(url_for('mainpage'))
     form = SignUpForm()
     if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data)
+        user = User(first_name=form.first_name.data,
+                    last_name=form.last_name.data,
+                    tlf=form.tlf.data,
+                    username=form.username.data,
+                    email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
