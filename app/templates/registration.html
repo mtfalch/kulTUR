@@ -5,6 +5,7 @@
     <div class="container">
 
         <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+            {{ form.hidden_tag() }}
     <fieldset>
 
     <!-- Form Name -->
@@ -13,12 +14,13 @@
     <!-- Text input-->
 
     <div class="form-group">
-      <label class="col-md-4 control-label">Fornavn</label>
+     <!-- <label class="col-md-4 control-label">Fornavn</label> -->
+        {{form.first_name.label(class_="col-md-4 control-label")}}
       <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
       <!--<input  name="first_name" placeholder="Fornavn" class="form-control"  type="text">-->
-          {{form.first_name(class_="first_name", placeholder="Fornavn", class="form-control", type="text") }}
+          {{form.first_name(placeholder="Fornavn", class_="form-control") }}
         </div>
       </div>
     </div>
@@ -26,11 +28,12 @@
     <!-- Text input-->
 
     <div class="form-group">
-      <label class="col-md-4 control-label" >Etternavn</label>
+      <!--<label class="col-md-4 control-label" >Etternavn</label> -->
+         {{form.last_name.label(class_="col-md-4 control-label")}}
         <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      {{form.last_name(class_="last_name", placeholder="Etternavn", class="form-control", type="text") }}
+      {{form.last_name(placeholder="Etternavn", class_="form-control") }}
         </div>
       </div>
     </div>
@@ -40,11 +43,13 @@
         <div class="col-md-4 selectContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-        <select name="gender" class="form-control selectpicker">
-          <option value="">Velg kjønn</option>
+                {{form.sex(placeholder="Kjønn", class_="form-control selectpicker")}}
+
+        <!--<select name="gender" class="form-control selectpicker">-->
+          <!--<option value="">Velg kjønn</option>
           <option >Kvinne</option>
           <option >Mann</option>
-          <option >Annet</option>
+          <option >Annet</option>-->
         </select>
       </div>
     </div>
@@ -53,11 +58,12 @@
     <!-- Text input-->
 
     <div class="form-group">
-      <label class="col-md-4 control-label">Brukernavn</label>
+      <!--<label class="col-md-4 control-label">Brukernavn</label> -->
+         {{form.username.label(class_="col-md-4 control-label")}}
       <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      {{form.username(class_="username", placeholder="Brukernavn", class="form-control", type="text") }}
+      {{form.username(placeholder="Brukernavn", class_="form-control") }}
         </div>
       </div>
     </div>
@@ -65,11 +71,12 @@
     <!-- Text input-->
 
     <div class="form-group">
-      <label class="col-md-4 control-label" >Passord</label>
+      <!--<label class="col-md-4 control-label" >Passord</label> -->
+         {{form.password.label(class_="col-md-4 control-label")}}
         <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-     {{form.password(class_="password", placeholder="Passord", class="form-control", type="text") }}
+     {{form.password(placeholder="Passord", class_="form-control") }}
         </div>
       </div>
     </div>
@@ -77,22 +84,24 @@
     <!-- Text input-->
 
     <div class="form-group">
-      <label class="col-md-4 control-label" >Gjenta passord</label>
+      <!--<label class="col-md-4 control-label" >Gjenta passord</label> -->
+         {{form.password2.label(class_="col-md-4 control-label")}}
         <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      {{form.password(class_="password", placeholder="Passord", class="form-control", type="text") }}
+      {{form.password2(placeholder="Passord", class_="form-control") }}
         </div>
       </div>
     </div>
 
     <!-- Text input-->
            <div class="form-group">
-      <label class="col-md-4 control-label">E-Mail</label>
+      <!--<label class="col-md-4 control-label">E-Mail</label>-->
+               {{form.email.label(class_="col-md-4 control-label")}}
         <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-      {{form.email(class_="email", placeholder="E-Mail", class="form-control", type="text") }}
+      {{form.email(placeholder="E-Mail", class_="form-control") }}
         </div>
       </div>
     </div>
@@ -101,11 +110,12 @@
     <!-- Text input-->
 
     <div class="form-group">
-      <label class="col-md-4 control-label">Telefon</label>
+      <!--<label class="col-md-4 control-label">Telefon</label>-->
+         {{form.tlf.label(class_="col-md-4 control-label")}}
         <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-     {{form.tlf(class_="tlf", placeholder="(+47) ", class="form-control", type="text") }}
+     {{form.tlf(placeholder="(+47) ", class_="form-control") }}
         </div>
       </div>
     </div>
@@ -113,16 +123,22 @@
     <!-- Select Basic -->
     <!-- Button -->
     <div class="form-group">
-      <label class="col-md-4 control-label"></label>
-      <div class="col-md-4"><br>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{form.submit(class="btn btn-warning")}}
+      <!--<label class="col-md-4 control-label"></label>-->
+        <!-- {{form.submit.label(class_="col-md-4 control-label")}}-->
+        <div class="col-md-4 inputGroupContainer">
+        <div class="col-md-4">
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{form.submit(class_="btn btn-warning")}}
       </div>
+    </div>
     </div>
 
     </fieldset>
     </form>
     </div>
-        </div><!-- /.container -->
+        </div>
+
+<p>Ny bruker? <a href="{{ url_for('registration') }}">Klikk for registrering!</a></p>
+<!-- /.container -->
 
 {% endblock %}
 

@@ -13,6 +13,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     tlf = db.Column(db.Integer, unique=True)
+    sex = db.Column(db.String(64))
     password_hash = db.Column(db.String(128))
     trips = db.relationship('UserTrips', backref='owner', lazy='dynamic')
 

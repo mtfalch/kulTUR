@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField
 from wtforms.validators import DataRequired, EqualTo, ValidationError, Email, Length
 from app.models import User
 
@@ -51,6 +51,7 @@ class SignUpForm(FlaskForm):
     username = StringField('Brukernavn', validators=[DataRequired()])
     password = PasswordField('Passord', validators=[DataRequired()])
     password2 = PasswordField('Gjenta passord', validators=[DataRequired(), EqualTo('password')])
+    sex = SelectField('Kjønn', validators=[DataRequired()], choices=[('male', 'Mann'), ('female', 'Kvinne'), ('other', 'Annet')])
     submit = SubmitField('Registrer deg')
 
 

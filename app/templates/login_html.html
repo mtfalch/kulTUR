@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+<div class="container">
+
+        <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+            {{ form.hidden_tag() }}
+    <fieldset>
+
+    <!-- Form Name -->
+    <legend><h2 align="center"><b>Logg inn</b></h2></legend><br>
+
+
+    <div class="form-group">
+      <!--<label class="col-md-4 control-label">Brukernavn</label> -->
+         {{form.username.label(class_="col-md-4 control-label")}}
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      {{form.username(placeholder="Brukernavn", class_="form-control") }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Text input-->
+
+    <div class="form-group">
+      <!--<label class="col-md-4 control-label" >Passord</label> -->
+         {{form.password.label(class_="col-md-4 control-label")}}
+        <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+     {{form.password(placeholder="Passord", class_="form-control") }}
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Button -->
+    <div class="form-group">
+      <!--<label class="col-md-4 control-label"></label>-->
+        <!-- {{form.submit.label(class_="col-md-4 control-label")}}-->
+        <div class="col-md-4 inputGroupContainer">
+        <div class="col-md-4">
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{form.submit(class_="btn btn-warning")}}
+      </div>
+    </div>
+    </div>
+
+    </fieldset>
+    </form>
+    </div>
+</div>
+
+{% endblock %}

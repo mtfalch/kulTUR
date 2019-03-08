@@ -31,7 +31,7 @@ def login():
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('mainpage')
         return redirect(next_page)
-    return render_template('login.html', title='Log In', form=form)
+    return render_template('login_html.html', title='Log In', form=form)
 
 @app.route('/logout')
 def logout():
@@ -48,7 +48,7 @@ def registration():
                     last_name=form.last_name.data,
                     tlf=form.tlf.data,
                     username=form.username.data,
-                    email=form.email.data)
+                    email=form.email.data, sex = form.sex.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
