@@ -53,6 +53,7 @@ class SignUpForm(FlaskForm):
     password2 = PasswordField('Gjenta passord', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Registrer deg')
 
+
 class EditProfileForm(FlaskForm):
     username = StringField('Brukernavn', validators=[DataRequired()])
     submit = SubmitField('Send')
