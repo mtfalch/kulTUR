@@ -17,7 +17,8 @@
       <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input  name="first_name" placeholder="Fornavn" class="form-control"  type="text">
+      <!--<input  name="first_name" placeholder="Fornavn" class="form-control"  type="text">-->
+          {{form.first_name(class_="first_name", placeholder="Fornavn", class="form-control", type="text") }}
         </div>
       </div>
     </div>
@@ -29,7 +30,7 @@
         <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input name="last_name" placeholder="Etternavn" class="form-control"  type="text">
+      {{form.last_name(class_="last_name", placeholder="Etternavn", class="form-control", type="text") }}
         </div>
       </div>
     </div>
@@ -39,7 +40,7 @@
         <div class="col-md-4 selectContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-        <select name="department" class="form-control selectpicker">
+        <select name="gender" class="form-control selectpicker">
           <option value="">Velg kjønn</option>
           <option >Kvinne</option>
           <option >Mann</option>
@@ -56,7 +57,7 @@
       <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input  name="user_name" placeholder="Brukernavn" class="form-control"  type="text">
+      {{form.username(class_="username", placeholder="Brukernavn", class="form-control", type="text") }}
         </div>
       </div>
     </div>
@@ -68,7 +69,7 @@
         <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input name="user_password" placeholder="Passord" class="form-control"  type="password">
+     {{form.password(class_="password", placeholder="Passord", class="form-control", type="text") }}
         </div>
       </div>
     </div>
@@ -80,7 +81,7 @@
         <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <input name="confirm_password" placeholder="Gjenta passord" class="form-control"  type="password">
+      {{form.password(class_="password", placeholder="Passord", class="form-control", type="text") }}
         </div>
       </div>
     </div>
@@ -91,7 +92,7 @@
         <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-      <input name="email" placeholder="E-mail" class="form-control"  type="text">
+      {{form.email(class_="email", placeholder="E-Mail", class="form-control", type="text") }}
         </div>
       </div>
     </div>
@@ -104,7 +105,7 @@
         <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-      <input name="contact_no" placeholder="(+47)" class="form-control" type="text">
+     {{form.tlf(class_="tlf", placeholder="(+47) ", class="form-control", type="text") }}
         </div>
       </div>
     </div>
@@ -114,7 +115,7 @@
     <div class="form-group">
       <label class="col-md-4 control-label"></label>
       <div class="col-md-4"><br>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{form.submit(class="btn btn-warning")}}
       </div>
     </div>
 
