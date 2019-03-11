@@ -15,11 +15,13 @@ class SignUpForm(FlaskForm):
     def validate_username(form, field):
         user = User.query.filter_by(username=field.data).first()
         if user is not None:
+            flash('Brukernavn er allerede tatt')
             raise ValidationError('Brukernavn er allerede tatt.')
 
     def validate_email(form, field):
         user = User.query.filter_by(email=field.data).first()
         if user is not None:
+            flash('Email er allerede brukt')
             raise ValidationError('Email er allerede brukt.')
 
     def validate_password(form, field):
@@ -48,7 +50,7 @@ class SignUpForm(FlaskForm):
 
     first_name = StringField('Fornavn', validators=[DataRequired()])
     last_name = StringField('Etternavn', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email(message="Insert an real email")])
     tlf = StringField('Telefon', validators=[DataRequired(), Length(max=8), Length(min=8)])
     username = StringField('Brukernavn', validators=[DataRequired()])
     password = PasswordField('Passord', validators=[DataRequired()])

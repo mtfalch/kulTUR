@@ -74,5 +74,5 @@ def edit_profile():
         return redirect(url_for('edit_profile'))
     elif request.method == 'GET':
         form.username.data = current_user.username
-    return render_template('edit_profile.html', title='Edit profile', form = form)
+    return render_template('edit.html', title='Edit profile', form = form)
 
