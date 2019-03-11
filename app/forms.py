@@ -1,3 +1,4 @@
+from flask import flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField
 from wtforms.validators import DataRequired, EqualTo, ValidationError, Email, Length
@@ -23,6 +24,7 @@ class SignUpForm(FlaskForm):
 
     def validate_password(form, field):
         if form.check_password(field.data):
+            flash('Passordet må ha 8 tegn, og inneholde minst en stor bokstav og et tall')
             raise ValidationError('Passordet må ha 8 tegn, og inneholde minst en stor bokstav og et tall.')
 
     @staticmethod
@@ -50,7 +52,7 @@ class SignUpForm(FlaskForm):
     tlf = StringField('Telefon', validators=[DataRequired(), Length(max=8), Length(min=8)])
     username = StringField('Brukernavn', validators=[DataRequired()])
     password = PasswordField('Passord', validators=[DataRequired()])
-    password2 = PasswordField('Gjenta passord', validators=[DataRequired(), EqualTo('password')])
+    password2 = PasswordField('Gjenta passord', validators=[DataRequired(), EqualTo('password', message="Passord må være like")])
     sex = SelectField('Kjønn', validators=[DataRequired()], choices=[('male', 'Mann'), ('female', 'Kvinne'), ('other', 'Annet')])
     submit = SubmitField('Registrer deg')
 
