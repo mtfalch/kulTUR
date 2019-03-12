@@ -12,6 +12,12 @@ class LoginForm(FlaskForm):
 
 class SignUpForm(FlaskForm):
 
+    def validate_tlf(form, field):
+        tlf = User.query.filter_by(tlf=field.data).first()
+        if tlf is not None:
+            flash('Telefonnummer er allerede registrert')
+            raise ValidationError('Telefonnummer er allerede registrert')
+
     def validate_username(form, field):
         user = User.query.filter_by(username=field.data).first()
         if user is not None:
@@ -19,8 +25,8 @@ class SignUpForm(FlaskForm):
             raise ValidationError('Brukernavn er allerede tatt.')
 
     def validate_email(form, field):
-        user = User.query.filter_by(email=field.data).first()
-        if user is not None:
+        email = User.query.filter_by(email=field.data).first()
+        if email is not None:
             flash('Email er allerede brukt')
             raise ValidationError('Email er allerede brukt.')
 

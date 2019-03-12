@@ -37,23 +37,26 @@
     </div>
 
 
-    <!-- Button -->
+        <!-- Button -->
     <div class="form-group">
-      <!--<label class="col-md-4 control-label"></label>-->
-        <!-- {{form.submit.label(class_="col-md-4 control-label")}}-->
-        <div class="col-md-4 inputGroupContainer">
-        <div class="col-md-4">
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{form.submit(class_="btn btn-warning")}}
-      </div>
-    </div>
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-4"><br>
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Logg inn <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+        </div>
     </div>
 
-        <p>Ny bruker? <a href="{{ url_for('registration') }}">Klikk for registrering!</a></p>
-<!-- /.container -->
+
+        <div class="form-group">
+            <label class="col-md-4 control-label"></label>
+            <div class="col-md-4">
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{{ url_for('registration') }}" class="btn btn-primary btn-sm" role="button">Ny bruker? Registrer deg her</a>
+            </div>
+        </div>
+
 
     </fieldset>
     </form>
-    </div>
 </div>
+
 
 {% endblock %}

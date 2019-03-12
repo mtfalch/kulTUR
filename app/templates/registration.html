@@ -2,10 +2,10 @@
 
 {% block app_content %}
 
-    <div class="container">
+<div class="container">
 
-        <form class="well form-horizontal" action=" " method="post"  id="contact_form">
-            {{ form.hidden_tag() }}
+    <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+        {{ form.hidden_tag() }}
     <fieldset>
 
     <!-- Form Name -->
@@ -14,12 +14,11 @@
     <!-- Text input-->
 
     <div class="form-group">
-     <!-- <label class="col-md-4 control-label">Fornavn</label> -->
+
         {{form.first_name.label(class_="col-md-4 control-label")}}
       <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      <!--<input  name="first_name" placeholder="Fornavn" class="form-control"  type="text">-->
           {{form.first_name(placeholder="Fornavn", class_="form-control") }}
         </div>
       </div>
@@ -28,7 +27,6 @@
     <!-- Text input-->
 
     <div class="form-group">
-      <!--<label class="col-md-4 control-label" >Etternavn</label> -->
          {{form.last_name.label(class_="col-md-4 control-label")}}
         <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
@@ -52,7 +50,6 @@
     <!-- Text input-->
 
     <div class="form-group">
-      <!--<label class="col-md-4 control-label">Brukernavn</label> -->
          {{form.username.label(class_="col-md-4 control-label")}}
       <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
@@ -78,19 +75,17 @@
     <!-- Text input-->
 
     <div class="form-group">
-      <!--<label class="col-md-4 control-label" >Gjenta passord</label> -->
          {{form.password2.label(class_="col-md-4 control-label")}}
         <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      {{form.password2(placeholder="Passord", class_="form-control") }}
+      {{form.password2(placeholder="Gjenta passord", class_="form-control") }}
         </div>
       </div>
     </div>
 
     <!-- Text input-->
            <div class="form-group">
-      <!--<label class="col-md-4 control-label">E-Mail</label>-->
                {{form.email.label(class_="col-md-4 control-label")}}
         <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
@@ -104,7 +99,6 @@
     <!-- Text input-->
 
     <div class="form-group">
-      <!--<label class="col-md-4 control-label">Telefon</label>-->
          {{form.tlf.label(class_="col-md-4 control-label")}}
         <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
@@ -114,22 +108,16 @@
       </div>
     </div>
 
-    <!-- Select Basic -->
-    <!-- Button -->
+         <!-- Button -->
     <div class="form-group">
-      <!--<label class="col-md-4 control-label"></label>-->
-        <!-- {{form.submit.label(class_="col-md-4 control-label")}}-->
-        <div class="col-md-4 inputGroupContainer">
-        <div class="col-md-4">
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{form.submit(class_="btn btn-warning")}}
-      </div>
-    </div>
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-4"><br>
+             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Registrer deg <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+        </div>
     </div>
 
     </fieldset>
     </form>
-    </div>
-        </div>
-
+</div>
 {% endblock %}
 
