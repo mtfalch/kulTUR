@@ -2,8 +2,21 @@
 
 
 {% block app_content %}
-    <h2> Bruker: {{user.username}} </h2>
-    <h2> Navn: {{user.first_name }} {{user.last_name}}</h2>
-    <h2> </h2>
+
+<div class="container">
+
+    <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+    <fieldset>
+
+        <legend><h3><b>Din informasjon</b></h3></legend><br>
+        Brukernavn: {{user.username}} <br>
+        Navn: {{user.first_name }} {{user.last_name}} <br>
+        Epost: {{user.email}} <br>
+        Telefon: {{user.tlf}} <br>
+
+
+    </fieldset>
+    </form>
+</div>
 
 {% endblock %}

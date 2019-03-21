@@ -38,3 +38,4 @@ class Route(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     trips = db.relationship('UserTrips', backref='TripRoute', lazy='dynamic')
 
+
