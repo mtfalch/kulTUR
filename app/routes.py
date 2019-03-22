@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request
 from werkzeug.urls import url_parse
 from app import app, db
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import SignUpForm, LoginForm, EditProfileForm
+from app.forms import SignUpForm, LoginForm, EditProfileForm, EditTlfForm, EditNameForm, EditEmailForm, EditSexForm, EditPasswordForm
 from app.models import User
 
 @app.route('/')
@@ -72,8 +72,76 @@ def edit_profile():
         current_user.username = form.username.data
         db.session.commit()
         flash('Endringene dine er lagret.')
-        return redirect(url_for('edit_profile'))
+        return redirect(url_for('user', username=current_user.username))
     elif request.method == 'GET':
         form.username.data = current_user.username
     return render_template('edit.html', title='Edit profile', form = form)
 
+@app.route('/edit_tlf', methods=['GET', 'POST'])
+@login_required
+def edit_tlf():
+    form = EditTlfForm()
+    if form.validate_on_submit():
+        current_user.tlf = form.tlf.data
+        db.session.commit()
+        flash('Endringene dine er lagret.')
+        return redirect(url_for('user', username=current_user.username))
+    elif request.method == 'GET':
+        form.tlf.data = current_user.tlf
+    return render_template('edit_tlf.html', title='Edit tlf', form = form)
+
+@app.route('/edit_name', methods=['GET', 'POST'])
+@login_required
+def edit_name():
+    form = EditNameForm()
+    if form.validate_on_submit():
+        current_user.first_name = form.first_name.data
+        current_user.last_name = form.last_name.data
+        db.session.commit()
+        flash('Endringene dine er lagret.')
+        return redirect(url_for('user', username=current_user.username))
+    elif request.method == 'GET':
+        form.first_name.data = current_user.first_name
+        form.last_name.data = current_user.last_name
+    return render_template('edit_name.html', title='Edit name', form = form)
+
+
+@app.route('/edit_mail', methods=['GET', 'POST'])
+@login_required
+def edit_mail():
+    form = EditEmailForm()
+    if form.validate_on_submit():
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Endringene dine er lagret.')
+        return redirect(url_for('user', username=current_user.username))
+    elif request.method == 'GET':
+        form.email.data = current_user.email
+    return render_template('edit_mail.html', title='Edit mail', form = form)
+
+
+@app.route('/edit_sex', methods=['GET', 'POST'])
+@login_required
+def edit_sex():
+    form = EditSexForm()
+    if form.validate_on_submit():
+        current_user.sex = form.sex.data
+        db.session.commit()
+        flash('Endringene dine er lagret.')
+        return redirect(url_for('user', username=current_user.username))
+    elif request.method == 'GET':
+        form.sex.data = current_user.sex
+    return render_template('edit_sex.html', title='Edit sex', form = form)
+
+#@app.route('/edit_password', methods=['GET', 'POST'])
+#"@login_required
+#def edit_password():
+ #   form = EditPasswordForm()
+  #  if form.validate_on_submit():
+   #     user.set_password(form.password.data)
+    #    db.session.commit()
+     #   flash('Endringene dine er lagret.')
+      #  return redirect(url_for('user', username=current_user.username))
+   # elif request.method == 'GET':
+    #    form.password.data = current_user.password
+    #return render_template('edit_password.html', title='Edit password', form = form)
