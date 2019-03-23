@@ -4,25 +4,13 @@ var cabins = {
   "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
   "timestamp": "2017-02-08T08:54:02Z",
   "features": [
-    {
-      "type": "Feature",
-      "id": "node/33209415",
-      "properties": {
-        "name": "Samatun utleiehytte"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          10.59569,
-          63.1104
-        ]
-      }
-    },
+
     {
       "type": "Feature",
       "id": "node/34926021",
       "properties": {
-        "name": "Grønlia",
+        "open": "Mandag 11-19, tirsdag, torsdag, fredag 10-15, onsdag 10-20, lørdag - søndag 10-16.",
+        "name": "Grønlia"
       },
       "geometry": {
         "type": "Point",
@@ -36,7 +24,8 @@ var cabins = {
       "type": "Feature",
       "id": "node/153142045",
       "properties": {
-        "name": "Rønningen Gård",
+        "open": "Onsdag – torsdag 11-20, lørdag – søndag 10-16",
+        "name": "Rønningen Gård"
       },
       "geometry": {
         "type": "Point",
@@ -51,7 +40,8 @@ var cabins = {
       "type": "Feature",
       "id": "node/270521799",
       "properties": {
-        "name": "Lavollen",
+        "open": "Onsdag 11-15, lørdag – søndag 11-16",
+        "name": "Lavollen"
       },
       "geometry": {
         "type": "Point",
@@ -65,7 +55,8 @@ var cabins = {
       "type": "Feature",
       "id": "node/270521800",
       "properties": {
-        "name": "Elgsethytta",
+        "open": "Tirsdag 11-15, onsdag 11-20, torsdag 15-20, lørdag - søndag 10.30-16",
+        "name": "Elgsethytta"
       },
       "geometry": {
         "type": "Point",
@@ -79,7 +70,8 @@ var cabins = {
       "type": "Feature",
       "id": "node/893397017",
       "properties": {
-        "name": "Skistua",
+        "open": "Mandag – fredag 11-15, lørdag – søndag 11-17",
+        "name": "Skistua"
       },
       "geometry": {
         "type": "Point",
@@ -93,6 +85,7 @@ var cabins = {
       "type": "Feature",
       "id": "node/948503915",
       "properties": {
+        "open": "Tirsdag 11-15, onsdag 11-20, torsdag 15-20 (taco-torsdag), lørdag og søndag 10.30-16",
         "name": "Estenstadhytta"
       },
       "geometry": {
