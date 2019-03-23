@@ -4,21 +4,21 @@
 
 <div class="container">
 
-    <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+        <form class="well form-horizontal" action=" " method="post"  id="contact_form">
             {{ form.hidden_tag() }}
     <fieldset>
 
     <!-- Form Name -->
-    <legend><h2 align="center"><b>Rediger brukernavn </b></h2></legend><br>
+    <legend><h2 align="center"><b>Rediger telefonnummer</b></h2></legend><br>
 
 
     <div class="form-group">
       <!--<label class="col-md-4 control-label">Brukernavn</label> -->
-         {{form.username.label(class_="col-md-4 control-label")}}
+         {{form.tlf.label(class_="col-md-4 control-label")}}
       <div class="col-md-4 inputGroupContainer">
       <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-      {{form.username(placeholder="Brukernavn", class_="form-control") }}
+      {{form.tlf(placeholder="Telefon", class_="form-control") }}
         </div>
       </div>
     </div>
@@ -29,12 +29,13 @@
         <label class="col-md-4 control-label"></label>
         <div class="col-md-4"><br>
               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="submit" class="btn btn-warning" >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Send <span class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
-
         </div>
     </div>
+
+
     </fieldset>
     </form>
-</div>
+    </div>
 </div>
 
 {% endblock %}

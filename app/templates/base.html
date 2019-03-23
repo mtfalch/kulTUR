@@ -25,7 +25,6 @@
                     {% else %}
                     <li><a href="{{url_for('map')}}"><span class="glyphicon glyphicon-map-marker"></span> Kart </a></li>
                     <li><a href="{{ url_for('user', username=current_user.username) }}"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
-                    <li> <a href="{{ url_for('edit_profile') }}"><span class="glyphicon glyphicon-edit"></span> Rediger profil</a></li>
                     <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logg ut</a></li>
                     {% endif %}
                 </ul>
