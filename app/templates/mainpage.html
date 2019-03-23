@@ -1,55 +1,98 @@
+
 {% extends "base.html" %}
 
 {% block app_content %}
 
-    <div class="jumbotron text-center" style="background: url(https://www.holsby.org/wp-content/uploads/2016/06/nature-header.jpg); background-size: 100% 100%;">
-      <h1 style=color:white> Finn en kul tur da vel!</h1>
-      <p style=color:white> Utforsk Bymarkas mange turer, sjekk hva andre har sagt om løypene og legg inn egne kommentarer. </p>
+<head>
+    <style>
+        #section1 {margin-top: 30px; margin-bottom: 240px; height:450px; width: 1110px; background-color: white;}
+        #section2 {margin-bottom: 40px; height:450px; width: 1100px; background-color: white; align-items: center}
+        #section3 {margin-left: 15px;margin-bottom: 40px;height:300px; width: 1085px; background-color: rgba(200, 255, 200, 0.5);}
+    </style>
+</head>
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="0">
+
+<div class="container" style="position: fixed; top: 250px; width: 50%; transform: translate3d(-200px, 0, 0)">
+    <div class="row">
+        <nav class="col-sm-3" id="myScrollspy">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="#section1">Ukas turbilder</a></li>
+                <li><a href="#section2"> Finn en kul tur</a></li>
+                <li><a href="#section3">Mer fra kulTUR</a></li>
+                </li>
+            </ul>
+        </nav>
     </div>
+</div>
 
-    <div id="Carousel" class="carousel slide" data-ride="carousel">
+<div class="col-sm-9">
+    <div id="section1" class="container-fluid">
+        <div id="Carousel" class="carousel slide" data-ride="carousel">
 
-         <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#Carousel" data-slide-to="0" class="active"></li>
-            <li data-target="#Carousel" data-slide-to="1"></li>
-        </ol>
+             <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#Carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#Carousel" data-slide-to="1"></li>
+                <li data-target="#Carousel" data-slide-to="2"></li>
+            </ol>
 
-        <!-- Wrappers for slides -->
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <img src="http://i67.tinypic.com/sq11e9.jpg" alt="Image">
-                  <!-- Tekst -->
-                 <div class="carousel-caption">
-                    <h1 style="background: rgba(255, 255, 255, 0.5); color: black;"> Det perfekte stedet å grille en pølse</h1>
+            <!-- Wrappers for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="http://i65.tinypic.com/dhctxs.jpg" alt="Image">
+                      <!-- Tekst -->
+                     <div class="carousel-caption">
+                        <h1 style="background: rgba(255, 255, 255, 0.0); color: white"> Solnedgang på Lian </h1>
+                    </div>
                 </div>
-            </div>
-
 
             <div class="item">
-                <img src="http://i65.tinypic.com/110w12o.jpg" alt="Image">
+                <img src="http://i66.tinypic.com/ivalqr.jpg" alt="Image">
                   <!-- Tekst -->
                  <div class="carousel-caption">
-                    <h1 style="background: rgba(255, 255, 255, 0.5); color: black"> Påskedrømmen i Bymarka</h1>
+                    <h1 style="background: rgba(255, 255, 255, 0.0); color: white;"> Det perfekte stedet å grille en pølse</h1>
                 </div>
             </div>
+
+
+                <div class="item">
+                    <img src="http://i68.tinypic.com/dmbdac.jpg" alt="Image">
+                      <!-- Tekst -->
+                     <div class="carousel-caption">
+                        <h1 style="background: rgba(255, 255, 255, 0.0); color: white"> Påskedrømmen i Bymarka</h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#Carousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Next</span>
+            </a>
+             <a class="right carousel-control" href="#Carousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+                    </a>
         </div>
-
-
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#Carousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-            <span class="sr-only">Next</span>
-        </a>
-         <a class="right carousel-control" href="#Carousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-            <span class="sr-only">Next</span>
-                </a>
     </div>
 
+    <div id="section2" class="container-fluid">
+        <img src="http://i64.tinypic.com/4hzerq.jpg" alt="Image" style="width: 1080px">
+        <h1 align="center" style="color: white; margin-top: -100px"> Kanskje vi vil ha en søkefunksjon her? </h1>
+        <p align="center" style="color: white;"> Lian - Bymarka </p>
+    </div>
+
+      <div id="section3" class="container-fluid">
+        <h1 align="center" style="color: darkseagreen; line-height: 350px; margin-bottom: 0px"> Test </h1>
+        <p align="center" style="color: darkseagreen; margin-top: -100px"> Kan legge inn flere bokser med mer info. Nederst vil vi kanskje ha en footer? </p>
+    </div>
+</div>
+</body>
 
 
 
+<!-- http://i64.tinypic.com/4hzerq.jpg Lian - Skistua -->
 
 {% endblock %}
 
