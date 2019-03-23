@@ -12,6 +12,7 @@ function setMap() {
     //dette funka v
     basemapUrl = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png"
     L.tileLayer(basemapUrl).addTo(map);
+    L.geoJSON(geojson).addTo(map);
   
     // EKSTRA
    //var marker = L.marker([63.43049, 10.39506]).addTo(map);
