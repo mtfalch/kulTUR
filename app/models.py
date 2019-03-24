@@ -82,3 +82,26 @@ class Tracks2(db.Model):
 
     def __repr__(self):
         return '{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}'.format(self.gid, self.rutenavn, self.rutenummer, self.spes_fotru, self.gradering, self.rutemerkin, self.rutefolger, self.oppdatdato, self.belysning, self.lokalid, self.navnerom, self.noyaktighe, self.synbarhet, self.objtype, self.skilting, self.rutebetydn, self.geog)
+
+class Tracks3(db.Model):
+    __tablename__ = 'tracks'
+    gid = db.Column(db.Integer, primary_key=True)
+    rutenavn = db.Column(db.String(33))
+    rutenummer = db.Column(db.String(13))
+    spes_fotru = db.Column(db.String(2))
+    gradering = db.Column(db.String(1))
+    rutemerkin = db.Column(db.String(3))
+    rutefolger = db.Column(db.String(2))
+    oppdatdato = db.Column(db.String(20))
+    belysning = db.Column(db.SMALLINT)
+    lokalid = db.Column(db.String(100))
+    navnerom = db.Column(db.String(100))
+    noyaktighe = db.Column(db.INTEGER)
+    synbarhet = db.Column(db.SMALLINT)
+    objtype = db.Column(db.String(32))
+    skilting = db.Column(db.String(3))
+    rutebetydn = db.Column(db.SMALLINT)
+    geog = db.Column(Geography(geometry_type='LINESTRING'))
+
+    def __repr__(self):
+        return '{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}'.format(self.gid, self.rutenavn, self.rutenummer, self.spes_fotru, self.gradering, self.rutemerkin, self.rutefolger, self.oppdatdato, self.belysning, self.lokalid, self.navnerom, self.noyaktighe, self.synbarhet, self.objtype, self.skilting, self.rutebetydn, self.geog)
