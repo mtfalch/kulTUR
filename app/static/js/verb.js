@@ -12,8 +12,13 @@ function setMap() {
     //dette funka v
     basemapUrl = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png"
     L.tileLayer(basemapUrl).addTo(map);
-    L.geoJSON(geojson).addTo(map);
-  
+
+
+    // Dette laster dårlig og legger seg over med hvitt under - stygt
+    // var wmsLayer = L.tileLayer.wms('https://openwms.statkart.no/skwms1/wms.fkb4?', {
+    //    layers: 'fkb_terrengform'
+    //}).addTo(map);
+
     // EKSTRA
    //var marker = L.marker([63.43049, 10.39506]).addTo(map);
    //var popUp = marker.bindPopup("<b>Heisann!</b><br>Klar for en tur i Trondheims flotte mark?");
