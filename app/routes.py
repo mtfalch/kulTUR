@@ -21,9 +21,9 @@ def map():
 def tracks(location):
     result = db.session.query(func.ST_AsGeoJSON(Tracks3.geog)).filter_by(rutenavn=location).first();
     # i ajax kallet ?tracks=
+    print(result)
     print(jsonify(result))
     return jsonify(result)
-
 
     # Possible sql injection
 
