@@ -13,9 +13,6 @@ from app.models import User, Tracks3
 def mainpage():
     return render_template('mainpage.html', title='Main Page')
 
-def test():
-    pass
-
 @app.route('/map')
 def map():
     return render_template('map.html', title='Map')
@@ -24,16 +21,8 @@ def map():
 def tracks(location):
     result = db.session.query(func.ST_AsGeoJSON(Tracks3.geog)).filter_by(rutenavn=location).first();
     # i ajax kallet ?tracks=
-    print(result)
     print(jsonify(result))
     return jsonify(result)
-
-def test2():
-    pass
-
-    # Possible sql injection
-
-    # query = db.session.query(Tracks2.gid, Tracks2.lokalid, func.ST_AsGeoJSON(Tracks2.geog, 6)).all()
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
