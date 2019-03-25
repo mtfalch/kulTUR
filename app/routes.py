@@ -28,6 +28,9 @@ def tracks(location):
     print(jsonify(result))
     return jsonify(result)
 
+def test2():
+    pass
+
     # Possible sql injection
 
     # query = db.session.query(Tracks2.gid, Tracks2.lokalid, func.ST_AsGeoJSON(Tracks2.geog, 6)).all()
