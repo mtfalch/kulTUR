@@ -5,7 +5,6 @@ from app import app, db
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms import SignUpForm, LoginForm, EditProfileForm, EditTlfForm, EditNameForm, EditEmailForm, EditSexForm, EditPasswordForm
 from app.models import User, Tracks3
-from geojson import Feature
 
 @app.route('/')
 @app.route('/index')

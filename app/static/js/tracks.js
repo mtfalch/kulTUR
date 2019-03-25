@@ -39,27 +39,28 @@ function onEachFeature(feature, layer) {
 }
 
 // ON/OFF tracks
-function get_data(checkboxElem) {
-    $.ajax({
+function get_data() {
+    var data = $.ajax({
         url: 'http://localhost:5000/tracks',
         type: 'GET',
-        datatype: 'json',
-        success: function (data, checkboxElem) {
+        datatype: 'json'
+    });
 
-            console.log(data)
-            var re = L.geoJSON(data, {onEachFeature: onEachFeature})
-
-            if (checkboxElem.checked) {
-                map.addLayer(re)
-            } else {
-                map.removeLayer(re);
-            }
-        },
-        error: function () {
-            alert('error handeling here')
+    $.when(data).done(function addDataToMap(data, checkboxElem) {
+        console.log(data)
+        var re = L.geoJSON(data, {onEachFeature: onEachFeature2});
+        if (checkboxElem.checked) {
+            map.addLayer(re)
+        } else {
+            map.removeLayer(re);
         }
-    })
+    });
 }
+
+function onEachFeature2(feature, layer) {
+        layer.bindPopup(feature.properties.popupContent);
+    }
+
 
 //data.setStyle({
 //    weight: 4,
