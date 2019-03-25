@@ -13,6 +13,9 @@ from app.models import User, Tracks3
 def mainpage():
     return render_template('mainpage.html', title='Main Page')
 
+def test():
+    pass
+
 @app.route('/map')
 def map():
     return render_template('map.html', title='Map')
