@@ -9,7 +9,7 @@ function setMap() {
     //const accessToken = "pk.eyJ1IjoibWFydGVodmkiLCJhIjoiY2pyaG54N2V0MDlxdzQ1cWt3cTJldDV5ZiJ9.B09_TlrzbWF5AWOWUc6qUw";
     //const id = "dark-v9";
     //var basemapUrl = "https://api.tiles.mapbox.com/v4/{id}/tiles/{z}/{x}/{y}.png?access_token={accessToken}";
-    //dette funka v
+    //dette funka
     basemapUrl = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png"
     L.tileLayer(basemapUrl).addTo(map);
 
@@ -18,12 +18,6 @@ function setMap() {
     // var wmsLayer = L.tileLayer.wms('https://openwms.statkart.no/skwms1/wms.fkb4?', {
     //    layers: 'fkb_terrengform'
     //}).addTo(map);
-
-    // EKSTRA
-   //var marker = L.marker([63.43049, 10.39506]).addTo(map);
-   //var popUp = marker.bindPopup("<b>Heisann!</b><br>Klar for en tur i Trondheims flotte mark?");
-   //map.on('click', popUp.openPopup);
-
 }
 
-  window.onload = setMap();
+window.onload = setMap();

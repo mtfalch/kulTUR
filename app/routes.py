@@ -1,9 +1,10 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, jsonify
+from geoalchemy2 import Geometry, func
 from werkzeug.urls import url_parse
 from app import app, db
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms import SignUpForm, LoginForm, EditProfileForm, EditTlfForm, EditNameForm, EditEmailForm, EditSexForm, EditPasswordForm
-from app.models import User
+from app.models import User, Tracks3
 
 @app.route('/')
 @app.route('/index')
@@ -16,6 +17,17 @@ def mainpage():
 def map():
     return render_template('map.html', title='Map')
 
+@app.route('/tracks/<location>', methods=['GET'])
+def tracks(location):
+    result = db.session.query(func.ST_AsGeoJSON(Tracks3.geog)).filter_by(rutenavn=location).first();
+    # i ajax kallet ?tracks=
+    print(jsonify(result))
+    return jsonify(result)
+
+
+    # Possible sql injection
+
+    # query = db.session.query(Tracks2.gid, Tracks2.lokalid, func.ST_AsGeoJSON(Tracks2.geog, 6)).all()
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -62,6 +74,7 @@ def registration():
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     return render_template('user.html', user=user)
+
 
 
 @app.route('/edit_profile', methods=['GET', 'POST'])

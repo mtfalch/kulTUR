@@ -7,12 +7,10 @@ var group = L.geoJSON(cabins, {
 function doalert(checkboxElem) {
     if (checkboxElem.checked) {
         map.addLayer(group)
-
     } else {
         map.removeLayer(group);
     }
 }
-
 
 function highlightFeature(e) {
   var layer = e.target;
@@ -42,10 +40,9 @@ function resetHighlight(e) {
   });
 }
 
-
 function onEachFeature(feature, layer) {
     {
-        layer.bindPopup('<b>'+feature.properties.RUTENAVN+'</b><p> Tur: '+feature.properties.OBJTYPE+'</p>');
+        layer.bindPopup('<b>'+feature.properties.RUTENAVN+'</b><p> Turtype: '+feature.properties.OBJTYPE+'</p>');
     }
     layer.on({
         mouseover: highlightFeature,
@@ -75,8 +72,14 @@ function toggletracks(checkboxElem) {
     }
 }
 
+function search(handleData){
+    $.ajax({
+        url: '/tracks/<location>',
+        sucess: function(data){
+            handleData(data)
+        }
 
-
-
+    })
+}
 
 
