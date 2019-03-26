@@ -1,9 +1,7 @@
 {% extends "base.html" %}
-
 {% block app_content %}
 
 <head><link rel="stylesheet" href="static/css/toggle.css"></head>
-
 
 
 <div class="container-fluid">
@@ -20,18 +18,12 @@
     </div>
 </div>
 
-
-   <!-- <div class="container">
-        Viktig å lage div-plasseringen før funksjonaliteten blir kjørt -->
-        <!--<div id='map'></div>
-    </div> -->
-
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 
 <script src="static/js/cabins_list.js"></script>
-<script src="static/js/geojson.js"></script>
-<script type="text/javascript" src="static/js/verb.js"></script>
+<script src="static/js/tracks.js"></script>
+<script type="text/javascript" src="static/js/map.js"></script>
 
 <div class="container" style="position: fixed; top: 150px; width: 200px; transform: translate3d(-200px, 0, 0)">
    <div class="form-group">
@@ -71,10 +63,11 @@
 <div>
     <br>
     <form id="toggletracks">
-        <script type="text/javascript" src="static/js/toggle.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="static/js/tracks.js"></script>
         <!-- Rounded switch -->
         <label class="switch">
-            <input type="checkbox"name="checkfield" id="checktracks"  onchange="toggletracks(this)"/>
+            <input type="checkbox"name="checkfield" id="checktracks"  onchange="get_data(this)"/>
             <span class="slider round"></span>
         </label>
         &nbsp&nbsp&nbsp&nbsp&nbsp<font size="4">Turer</font>
@@ -82,7 +75,5 @@
 </div>
 </div>
 
-    
-<!--<script type="text/javascript" src="static/js/verb.js"></script>-->
 {% endblock %}
 
