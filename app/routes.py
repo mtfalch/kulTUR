@@ -33,6 +33,7 @@ def tracks(location):
 	return jsonify(res)
 
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	if current_user.is_authenticated:
