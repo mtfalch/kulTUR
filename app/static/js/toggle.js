@@ -12,14 +12,33 @@ function doalert(checkboxElem) {
     }
 }
 
-function search(handleData){
-    $.ajax({
-        url: '/tracks/<location>',
-        sucess: function(data){
-            handleData(data)
-        }
+var objectData = {
+    input: document.getElementById('Input').value,
+}
 
+function getData(){
+    $.ajax({
+        url: 'http://127.0.0.1:5000/tracks/<location>', // Må kanskje ha en url foran også typ localhost
+        type: 'GET',
+        data: {
+            o: objectData
+        },
+        success: function (data){
+
+        }
     })
+}
+
+function successCallback(response){
+    var res = L.geoJSON(response)
+    map.addLayer(res);
+}
+
+function search(data){
+    print(data);
+    var x = getElementByID("Input");
+    var res = L.geoJSON(data)
+    map.addLayer(res)
 }
 
 

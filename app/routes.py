@@ -28,10 +28,12 @@ def get_tracks():
 
 @app.route('/tracks/<location>', methods=['GET'])
 def tracks(location):
+
 	result = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).filter_by(rutenavn=location).first();
 	# i ajax kallet ?tracks=
 	print(jsonify(result))
 	return jsonify(result)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
