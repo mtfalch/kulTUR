@@ -21,7 +21,6 @@ def map():
 def tracks(location):
     result = db.session.query(func.ST_AsGeoJSON(Tracks3.geog)).filter_by(rutenavn=location).first();
     # i ajax kallet ?tracks=
-    print(jsonify(result))
     return jsonify(result)
 
 @app.route('/login', methods=['GET', 'POST'])

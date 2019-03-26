@@ -34,12 +34,26 @@
 <script type="text/javascript" src="static/js/verb.js"></script>
 
 <div class="container" style="position: fixed; top: 150px; width: 200px; transform: translate3d(-200px, 0, 0)">
-    <input type="text" id="myInput" onkeyup="search()" placeholder="Søk..">
+   <div class="form-group">
+       <script type="text/javascript" src="static/js/toggle.js"></script>
+       <form action=""> <!-- her må det legges inn funksjonen som gjør søk -->
+           <select class="form-control" id="exampleFormControlSelect1">
+               <option value="bymarka">Bymarka</option>
+               <option value="kystpilgrimsleia">Kystpilegrimsleia</option>
+               <option value="pilst">Pilegrimsleden-St.Olavsleden</option>
+               <option value="pilrom">Pilegrimsleden-Romboleden</option>
+               <option value="pilgud">Pilegrimsleden-Gudbrandsdalsleden</option>
+           </select><br>
+           <button type="submit" class="btn btn-primary">Søk</button>
+       </form>
+   </div>
+    <!--<input type="text" id="myInput" onkeyup="search()" placeholder="Søk..">
+    <input type="search" id="Input" onsearch="successCallback()">-->
 </div>
 
 <div class="container" style="position: fixed; top: 250px; width: 230px; transform: translate3d(-200px, 0, 0)">
 <div>
-
+<br>
     <form id="myform">
         <script type="text/javascript" src="static/js/toggle.js"></script>
         <!-- Rounded switch -->
@@ -55,6 +69,7 @@
 
 <div class="container" style="position: fixed; top: 250px; width: 230px; transform: translate3d(-200px, 50px, 0)">
 <div>
+    <br>
     <form id="toggletracks">
         <script type="text/javascript" src="static/js/toggle.js"></script>
         <!-- Rounded switch -->
