@@ -28,8 +28,9 @@ def get_tracks():
 @app.route('/tracks/<location>', methods=['GET'])
 def tracks(location):
 
-	result = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).filter_by(rutenavn=location).first();
-	# i ajax kallet ?tracks=
+	result = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).filter_by(rutenavn=location).all();
+	result = [loads(r[0]) for r in result]
+	result = dict(type='FeatureCollection', features=result)
 	print(jsonify(result))
 	return jsonify(result)
 
