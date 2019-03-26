@@ -12,6 +12,31 @@ function doalert(checkboxElem) {
     }
 }
 
+var selectLayer = null;
+var data = null;
+
+function choose_data(value) {
+    console.log('running');
+    data = $.ajax({
+            url: 'http://localhost:5000/tracks/<location>',
+            type: 'GET',
+            datatype: 'json'
+    })
+
+    $.when(data).done(function (res) {
+
+        selectLayer = L.geoJSON(res, {onEachFeature: onEachFeature2});
+
+        turLayer.setStyle({
+            weight: 4,
+            color: '#FFA061',
+            dashArray: '',
+            Opacity: 1
+        })
+    });
+}
+
+window.onload = get_data();
 
 
 /*var objectData = {
