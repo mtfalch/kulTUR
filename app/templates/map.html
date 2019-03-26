@@ -26,7 +26,8 @@
 <script type="text/javascript" src="static/js/map.js"></script>
 
 <div class="container" style="position: fixed; top: 150px; width: 200px; transform: translate3d(-200px, 0, 0)">
-   <div class="form-group">
+   <p>Rutenavn</p>
+    <div class="form-group">
        <script type="text/javascript" src="static/js/toggle.js"></script>
        <form action=""> <!-- her må det legges inn funksjonen som gjør søk -->
            <select class="form-control" id="exampleFormControlSelect1">
@@ -39,13 +40,22 @@
            <button type="submit" class="btn btn-primary">Søk</button>
        </form>
    </div>
+    <br>
+    <p>Turtype</p>
+    <div class="form-group2">
+       <script type="text/javascript" src="static/js/toggle.js"></script>
+       <form action=""> <!-- her må det legges inn funksjonen som gjør søk -->
+           <select class="form-control" id="exampleFormControlSelect2">
+               <option value="Fottur">Fottur</option>
+               <option value="Skiløype">Skiløype</option>
+           </select><br>
+           <button type="submit" class="btn btn-primary">Søk</button>
+       </form>
+   </div>
     <!--<input type="text" id="myInput" onkeyup="search()" placeholder="Søk..">
     <input type="search" id="Input" onsearch="successCallback()">-->
-</div>
-
-<div class="container" style="position: fixed; top: 250px; width: 230px; transform: translate3d(-200px, 0, 0)">
-<div>
-<br>
+    <div>
+    <br>
     <form id="myform">
         <script type="text/javascript" src="static/js/toggle.js"></script>
         <!-- Rounded switch -->
@@ -57,10 +67,6 @@
 
     </form>
 </div>
-</div>
-
-
-<div class="container" style="position: fixed; top: 250px; width: 230px; transform: translate3d(-200px, 50px, 0)">
     <br>
     <div>
         <form id="toggletracks">
@@ -70,9 +76,12 @@
                 <input type="checkbox"name="checkfield" id="checktracks"  onchange="addDataToMap(this)"/>
                 <span class="slider round"></span>
             </label>
-            &nbsp&nbsp&nbsp&nbsp&nbsp<font size="4">Turer</font>
+            &nbsp&nbsp&nbsp&nbsp&nbsp<font size="4">Turstier</font>
         </form>
     </div>
 </div>
+
+
+
 {% endblock %}
 
