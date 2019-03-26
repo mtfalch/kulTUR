@@ -30,7 +30,7 @@ function resetHighlight(e) {
   });
 }
 
-function onEachFeature2(feature, layer) {
+function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
@@ -47,7 +47,15 @@ function get_data() {
     })
 
     $.when(data).done(function (res) {
-        turLayer = L.geoJSON(res);
+
+        turLayer = L.geoJSON(res, {onEachFeature: onEachFeature});
+        
+        turLayer.setStyle({
+            weight: 4,
+            color: '#FFA061',
+            dashArray: '',
+            Opacity: 1
+        })
     });
 }
 
@@ -64,12 +72,7 @@ function addDataToMap(checkboxElem) {
         }
 }
 
-//data.setStyle({
-//    weight: 4,
-//    color: '#FFA061',
-//    dashArray: '',
-//    Opacity: 1
-//})
+
 
 function toggletracks(data) {
     var data = L.geoJSON(data.responseJSON, {onEachFeature: onEachFeature})
