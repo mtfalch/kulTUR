@@ -41,7 +41,7 @@ function onEachFeature2(feature, layer) {
 function get_data() {
     console.log('running');
     data = $.ajax({
-            url: 'https://kulturen.herokuapp.com/tracks/summer',
+            url: 'https://kulturen.herokuapp.com/tracks/summer',// må endres for localhost
             type: 'GET',
             datatype: 'json'
     })
