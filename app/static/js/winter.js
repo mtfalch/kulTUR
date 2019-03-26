@@ -2,7 +2,7 @@
 var winterLayer = null;
 var data = null;
 
-function highlightFeature(e) {
+function highlightFeatureW(e) {
   var layer = e.target;
 
   layer.setStyle({
@@ -19,7 +19,7 @@ function highlightFeature(e) {
   }
 }
 
-function resetHighlight(e) {
+function resetHighlightW(e) {
   var layer = e.target;
 
   layer.setStyle({
@@ -30,10 +30,10 @@ function resetHighlight(e) {
   });
 }
 
-function onEachFeature2(feature, layer) {
+function onEachFeature3(feature, layer) {
     layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
+        mouseover: highlightFeatureW,
+        mouseout: resetHighlightW,
         //click: zoomToFeature
     });
 }
@@ -48,7 +48,7 @@ function get_data() {
 
     $.when(data).done(function (res) {
 
-        winterLayer = L.geoJSON(res, {onEachFeature: onEachFeature2});
+        winterLayer = L.geoJSON(res, {onEachFeature: onEachFeature3});
 
         winterLayer.setStyle({
             weight: 4,
