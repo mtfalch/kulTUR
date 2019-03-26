@@ -30,18 +30,30 @@ function resetHighlight(e) {
   });
 }
 
+function clickOn(e){
+    var layer = e.target;
+    console.log(layer)
+}
+
+function clicked(){
+    // Her må det være funksjonalitet for å legge til i tur
+    console.log('clicked')
+    
+}
+
 function onEachFeature2(feature, layer) {
+    layer.bindPopup('Her må vi hente ut info om turen!! <br><br><button type="button" onclick="clicked()"> Legg til tur </button>'),
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
-        //click: zoomToFeature
+        click: clickOn,
     });
 }
 
 function get_data() {
     console.log('running');
     data = $.ajax({
-            url: 'https://kulturen.herokuapp.com/tracks',// må endres for localhost
+            url: 'http://localhost:5000/tracks',// må endres for localhost/heroku. 'https://kulturen.herokuapp.com/tracks'
             type: 'GET',
             datatype: 'json'
     })

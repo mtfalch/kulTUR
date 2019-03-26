@@ -30,7 +30,7 @@ function resetHighlight(e) {
   });
 }
 
-function onEachFeature2(feature, layer) {
+function onEachFeature4(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
@@ -41,14 +41,14 @@ function onEachFeature2(feature, layer) {
 function get_data() {
     console.log('running');
     data = $.ajax({
-            url: 'https://kulturen.herokuapp.com/tracks/summer',// må endres for localhost
+            url: 'http://localhost:5000/tracks/summer',// må endres for localhost
             type: 'GET',
             datatype: 'json'
     })
 
     $.when(data).done(function (res) {
 
-        summerLayer = L.geoJSON(res, {onEachFeature: onEachFeature2});
+        summerLayer = L.geoJSON(res, {onEachFeature: onEachFeature4});
 
         summerLayer.setStyle({
             weight: 4,
