@@ -2,7 +2,7 @@
 {% block app_content %}
 
 <head><link rel="stylesheet" href="static/css/toggle.css"></head>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <div class="container-fluid">
     <div class="row-fluid">
@@ -45,20 +45,19 @@
 </div>
 </div>
 
-<div class="container" style="position: fixed; top: 250px; width: 230px; transform: translate3d(-200px, 50px, 0)">
-<div>
-    <form id="toggletracks">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script type="text/javascript" src="static/js/tracks.js"></script>
-        <!-- Rounded switch -->
-        <label class="switch">
-            <input type="checkbox"name="checkfield" id="checktracks"  onchange="get_data(this)"/>
-            <span class="slider round"></span>
-        </label>
-        &nbsp&nbsp&nbsp&nbsp&nbsp<font size="4">Turer</font>
-    </form>
-</div>
-</div>
 
+<div class="container" style="position: fixed; top: 250px; width: 230px; transform: translate3d(-200px, 50px, 0)">
+    <div>
+        <form id="toggletracks">
+            <script type="text/javascript" src="static/js/tracks.js"></script>
+            <!-- Rounded switch -->
+            <label class="switch">
+                <input type="checkbox"name="checkfield" id="checktracks"  onchange="addDataToMap(this)"/>
+                <span class="slider round"></span>
+            </label>
+            &nbsp&nbsp&nbsp&nbsp&nbsp<font size="4">Turer</font>
+        </form>
+    </div>
+</div>
 {% endblock %}
 

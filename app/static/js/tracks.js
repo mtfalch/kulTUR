@@ -1,4 +1,7 @@
 
+var turLayer = null;
+var data = null;
+
 function highlightFeature(e) {
   var layer = e.target;
 
@@ -27,10 +30,7 @@ function resetHighlight(e) {
   });
 }
 
-function onEachFeature(feature, layer) {
-    {
-        layer.bindPopup('<b>'+feature.properties.RUTENAVN+'</b><p> Turtype: '+feature.properties.OBJTYPE+'</p>');
-    }
+function onEachFeature2(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
@@ -38,29 +38,31 @@ function onEachFeature(feature, layer) {
     });
 }
 
-// ON/OFF tracks
 function get_data() {
-    var data = $.ajax({
-        url: 'http://localhost:5000/tracks',
-        type: 'GET',
-        datatype: 'json'
-    });
+    console.log('running');
+    data = $.ajax({
+            url: 'http://localhost:5000/tracks',
+            type: 'GET',
+            datatype: 'json'
+    })
 
-    $.when(data).done(function addDataToMap(data, checkboxElem) {
-        console.log(data)
-        var re = L.geoJSON(data, {onEachFeature: onEachFeature2});
-        if (checkboxElem.checked) {
-            map.addLayer(re)
-        } else {
-            map.removeLayer(re);
-        }
+    $.when(data).done(function (res) {
+        turLayer = L.geoJSON(res);
     });
 }
 
-function onEachFeature2(feature, layer) {
-        layer.bindPopup(feature.properties.popupContent);
-    }
+// ON/OFF tracks
+function addDataToMap(checkboxElem) {
 
+        if (checkboxElem.checked) {
+            console.log('Checked')
+            console.log(turLayer)
+            map.addLayer(turLayer);
+        } else {
+            console.log('Not checked')
+            map.removeLayer(turLayer);
+        }
+}
 
 //data.setStyle({
 //    weight: 4,
@@ -78,3 +80,4 @@ function toggletracks(data) {
         map.removeLayer(data);
     }
 }
+window.onload = get_data();

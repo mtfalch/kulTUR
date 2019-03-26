@@ -5,6 +5,8 @@ from app import app, db
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms import SignUpForm, LoginForm, EditProfileForm, EditTlfForm, EditNameForm, EditEmailForm, EditSexForm, EditPasswordForm
 from app.models import User, Tracks
+from json import loads, dumps
+from geojson import FeatureCollection
 
 @app.route('/')
 @app.route('/index')
@@ -19,9 +21,10 @@ def map():
 
 @app.route('/tracks')
 def get_tracks():
-	res = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).first()
-	print(res[0])
-	return res[0]
+	res = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).all()
+	res = [loads(r[0]) for r in res]
+	res = dict(type='FeatureCollection', features=res)
+	return jsonify(res)
 
 @app.route('/tracks/<location>', methods=['GET'])
 def tracks(location):
