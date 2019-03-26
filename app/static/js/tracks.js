@@ -30,7 +30,7 @@ function resetHighlight(e) {
   });
 }
 
-function onEachFeature(feature, layer) {
+function onEachFeature2(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
@@ -48,8 +48,8 @@ function get_data() {
 
     $.when(data).done(function (res) {
 
-        turLayer = L.geoJSON(res, {onEachFeature: onEachFeature});
-        
+        turLayer = L.geoJSON(res, {onEachFeature: onEachFeature2});
+
         turLayer.setStyle({
             weight: 4,
             color: '#FFA061',
