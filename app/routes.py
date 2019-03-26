@@ -4,7 +4,7 @@ from werkzeug.urls import url_parse
 from app import app, db
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms import SignUpForm, LoginForm, EditProfileForm, EditTlfForm, EditNameForm, EditEmailForm, EditSexForm, EditPasswordForm
-from app.models import User, Tracks3
+from app.models import User, Tracks
 
 @app.route('/')
 @app.route('/index')
@@ -19,13 +19,13 @@ def map():
 
 @app.route('/tracks')
 def get_tracks():
-	res = db.session.query(func.ST_AsGeoJSON(Tracks3.geog)).first()
+	res = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).first()
 	print(res[0])
 	return res[0]
 
 @app.route('/tracks/<location>', methods=['GET'])
 def tracks(location):
-	result = db.session.query(func.ST_AsGeoJSON(Tracks3.geog)).filter_by(rutenavn=location).first();
+	result = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).filter_by(rutenavn=location).first();
 	# i ajax kallet ?tracks=
 	print(jsonify(result))
 	return jsonify(result)
