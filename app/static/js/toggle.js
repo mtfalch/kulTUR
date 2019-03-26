@@ -12,7 +12,9 @@ function doalert(checkboxElem) {
     }
 }
 
-var objectData = {
+
+
+/*var objectData = {
     input: document.getElementById('Input').value,
 }
 
@@ -38,7 +40,7 @@ function search(data){
     print(data);
     var x = getElementByID("Input");
     var res = L.geoJSON(data)
-    map.addLayer(res)
-}
+    map.addLayer(res)*/
+
 
 
