@@ -127,3 +127,4 @@ class EditPasswordForm(FlaskForm):
     password2 = PasswordField('Gjenta passord',
                               validators=[DataRequired(), EqualTo('password', message="Passord må være like")])
     sumbit = SubmitField('Send')
+

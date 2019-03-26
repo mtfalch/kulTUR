@@ -3,7 +3,7 @@ from geoalchemy2 import Geometry, func
 from werkzeug.urls import url_parse
 from app import app, db
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import SignUpForm, LoginForm, EditProfileForm, EditTlfForm, EditNameForm, EditEmailForm, EditSexForm, EditPasswordForm
+from app.forms import SignUpForm, LoginForm, EditProfileForm, EditTlfForm, EditNameForm, EditEmailForm, EditSexForm
 from app.models import User, Tracks
 from json import loads
 
@@ -25,12 +25,26 @@ def get_tracks():
 	res = dict(type='FeatureCollection', features=res)
 	return jsonify(res)
 
-@app.route('/tracks/<location>', methods=['GET'])
-def tracks(location):
-	res = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).filter_by(rutenavn=location).all();
+@app.route('/tracks/summer')
+def summer():
+	res = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).filter(Tracks.objtype == 'Fotrute').all();
 	res = [loads(r[0]) for r in res]
 	res = dict(type='FeatureCollection', features=res)
 	return jsonify(res)
+
+@app.route('/tracks/winter')
+def winter():
+	res = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).filter(Tracks.objtype != 'Fotrute').all();
+	res = [loads(r[0]) for r in res]
+	res = dict(type='FeatureCollection', features=res)
+	return jsonify(res)
+
+#@app.route('/tracks/<location>', methods=['GET'])
+#def tracks(location):
+#	res = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).filter_by(rutenavn=location).first();
+#	res = [loads(r[0]) for r in res]
+#	res = dict(type='FeatureCollection', features=res)
+#	return jsonify(res)
 
 
 
@@ -150,16 +164,3 @@ def edit_sex():
 	elif request.method == 'GET':
 		form.sex.data = current_user.sex
 	return render_template('edit_sex.html', title='Edit sex', form = form)
-
-#@app.route('/edit_password', methods=['GET', 'POST'])
-#"@login_required
-#def edit_password():
- #   form = EditPasswordForm()
-  #  if form.validate_on_submit():
-   #     user.set_password(form.password.data)
-	#    db.session.commit()
-	 #   flash('Endringene dine er lagret.')
-	  #  return redirect(url_for('user', username=current_user.username))
-   # elif request.method == 'GET':
-	#    form.password.data = current_user.password
-	#return render_template('edit_password.html', title='Edit password', form = form)

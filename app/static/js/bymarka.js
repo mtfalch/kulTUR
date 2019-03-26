@@ -35,13 +35,4 @@ function addDataToMap1(checkboxElem) {
         }
 }
 
-function toggletracks2(data) {
-    var data = L.geoJSON(data.responseJSON, {onEachFeature: onEachFeature})
-    if (checkboxElem.checked) {
-        map.addLayer(data)
-        map.fitBounds(data.getBounds())
-    } else {
-        map.removeLayer(data);
-    }
-}
 window.onload = get_bymarka();

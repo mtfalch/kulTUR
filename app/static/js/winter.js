@@ -1,0 +1,73 @@
+
+var winterLayer = null;
+var data = null;
+
+function highlightFeature(e) {
+  var layer = e.target;
+
+  layer.setStyle({
+    //stroke: true,
+    weight: 10,
+    dashArray: '',
+    opacity: 0.7,
+    color: '#396d7c'
+
+  });
+
+  if (!L.Browser.ie && !L.Browser.opera) {
+    layer.bringToFront();
+  }
+}
+
+function resetHighlight(e) {
+  var layer = e.target;
+
+  layer.setStyle({
+      weight: 4,
+      color: '#396d7c',
+      dashArray: '',
+      opacity: 1
+  });
+}
+
+function onEachFeature2(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        //click: zoomToFeature
+    });
+}
+
+function get_data() {
+    console.log('running');
+    data = $.ajax({
+            url: 'http://localhost:5000/tracks/winter',
+            type: 'GET',
+            datatype: 'json'
+    })
+
+    $.when(data).done(function (res) {
+
+        winterLayer = L.geoJSON(res, {onEachFeature: onEachFeature2});
+
+        winterLayer.setStyle({
+            weight: 4,
+            color: '#396d7c',
+            dashArray: '',
+            Opacity: 1
+        })
+    });
+}
+
+// ON/OFF tracks
+function addWinterToMap(checkboxElem) {
+     if (checkboxElem.checked) {
+         console.log('Checked')
+         console.log(winterLayer)
+         map.addLayer(winterLayer);
+     } else {
+         console.log('Not checked')
+         map.removeLayer(winterLayer);
+     }
+}
+window.onload = get_data();

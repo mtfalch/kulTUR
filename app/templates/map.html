@@ -23,36 +23,26 @@
 
 <script src="static/js/cabins_list.js"></script>
 <script src="static/js/tracks.js"></script>
-<script src="static/js/bymarka.js"></script>
+<!--<script src="static/js/bymarka.js"></script>-->
 <script type="text/javascript" src="static/js/map.js"></script>
 
 <div class="container" style="position: fixed; top: 150px; width: 200px; transform: translate3d(-200px, 0, 0)">
-   <p>Rutenavn</p>
+
+    <p>Rutenavn</p>
     <div class="form-group">
        <script type="text/javascript" src="static/js/toggle.js"></script>
-       <form action="javascript:choose_data(value);"> <!-- her må det legges inn funksjonen som gjør søk -->
+       <form action=";"> <!-- her må det legges inn funksjonen som gjør søk -->
            <select class="form-control" id="exampleFormControlSelect1">
-               <option value="Bymarka">Bymarka</option>
-               <option value="Kystpilegrimsleia">Kystpilegrimsleia</option>
-               <option value="Pilegrimsleden-St.Olavsleden">Pilegrimsleden-St.Olavsleden</option>
-               <option value="Pilegrimsleden-Romboleden">Pilegrimsleden-Romboleden</option>
-               <option value="Pilegrimsleden-Gudbrandsdalsleden">Pilegrimsleden-Gudbrandsdalsleden</option>
+               <option id="Bymarka">Bymarka</option>
+               <option id="Kystpilegrimsleia">Kystpilegrimsleia</option>
+               <option id="Pilegrimsleden-St.Olavsleden">Pilegrimsleden-St.Olavsleden</option>
+               <option id="Pilegrimsleden-Romboleden">Pilegrimsleden-Romboleden</option>
+               <option id="Pilegrimsleden-Gudbrandsdalsleden">Pilegrimsleden-Gudbrandsdalsleden</option>
            </select><br>
-           <button type="submit" class="btn btn-primary">Søk</button>
+           <button type="submit" onclick="">søk</button>
        </form>
    </div>
     <br>
-    <p>Turtype</p>
-    <div class="form-group2">
-       <script type="text/javascript" src="static/js/toggle.js"></script>
-       <form action=""> <!-- her må det legges inn funksjonen som gjør søk -->
-           <select class="form-control" id="exampleFormControlSelect2">
-               <option value="Fottur">Fottur</option>
-               <option value="Skiløype">Skiløype</option>
-           </select><br>
-           <button type="submit" class="btn btn-primary">Søk</button>
-       </form>
-   </div>
     <!--<input type="text" id="myInput" onkeyup="search()" placeholder="Søk..">
     <input type="search" id="Input" onsearch="successCallback()">-->
     <div>
@@ -81,15 +71,29 @@
         </form>
     </div>
     <br>
-    <div>
-        <form id="togglebymarka">
-            <script type="text/javascript" src="static/js/bymarka.js"></script>
+
+      <div>
+        <form id="togglesummer">
+            <script type="text/javascript" src="static/js/summer.js"></script>
             <!-- Rounded switch -->
             <label class="switch">
-                <input type="checkbox"name="check3" id="checkbymarka"  onchange="addDataToMap1(this)"/>
+                <input type="checkbox"name="checkSeason" id="checksummer"  onchange="addSummerToMap(this)"/>
                 <span class="slider round"></span>
             </label>
-            &nbsp&nbsp&nbsp&nbsp&nbsp<font size="4">Bymarka</font>
+            &nbsp&nbsp&nbsp&nbsp&nbsp<font size="4">Fotturer</font>
+        </form>
+      </div>
+
+    <br>
+    <div>
+        <form id="togglewinter">
+            <script type="text/javascript" src="static/js/winter.js"></script>
+            <!-- Rounded switch -->
+            <label class="switch">
+                <input type="checkbox"name="checkSeason" id="checkwinter"  onchange="addWinterToMap(this)"/>
+                <span class="slider round"></span>
+            </label>
+            &nbsp&nbsp&nbsp&nbsp&nbsp<font size="4">Skiturer</font>
         </form>
     </div>
 </div>
