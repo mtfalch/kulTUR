@@ -5,21 +5,21 @@
 
 <head>
     <style>
-        #section1 {margin-top: 30px; margin-bottom: 240px; height:450px; width: 1110px; background-color: white;}
-        #section2 {margin-bottom: 40px; height:450px; width: 1100px; background-color: white; align-items: center}
-        #section3 {margin-left: 15px;margin-bottom: 40px;height:300px; width: 1085px; background-color: rgba(200, 255, 200, 0.5);}
+        #section1 {margin-top: 10px; margin-bottom: 10px; height: 610px; width: 1100px; background-color: white; align-items: center}
+        #section2 {margin-bottom: 220px; height:450px; width: 1110px; background-color: white;}
+        #section3 {margin-left: 15px; margin-bottom: 30px; height:300px; width: 1085px; background-color: rgba(200, 255, 200, 0.5);}
     </style>
 </head>
 
-<body data-spy="scroll" data-target="#myScrollspy" data-offset="0">
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="150">
 
 <div class="container" style="position: fixed; top: 250px; width: 50%; transform: translate3d(-200px, 0, 0)">
     <div class="row">
         <nav class="col-sm-3" id="myScrollspy">
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#section1">Ukas turbilder</a></li>
-                <li><a href="#section2"> Finn en kul tur</a></li>
-                <li><a href="#section3">Mer fra kulTUR</a></li>
+                <li class="active"><a href="#section1"> Finn en kul tur </a></li>
+                <li><a href="#section2"> Ukas turbilder</a></li>
+                <li><a href="#section3"> Mer fra kulTUR</a></li>
                 </li>
             </ul>
         </nav>
@@ -27,7 +27,28 @@
 </div>
 
 <div class="col-sm-9">
+
     <div id="section1" class="container-fluid">
+        <!-- Trykker på bildet for å kommet til kartet vårt -->
+        <div class="card" style="width: 1000;">
+            <a href="{{url_for('map')}}">
+                <img class="card-img-top" src="http://i65.tinypic.com/21b0j8y.jpg" alt="Card image cap">
+            </a>
+          <div class="card-body">
+            <h1 class="card-title">kulTUR: Din neste kule tur - bare et klikk unna! </h1>
+            <p class="card-text">Utforsk de flotte turmulighetene Trondheim har å tilby. <br>Sjekk når turhyttene har
+                                åpningstider for å sikre deg og dine turglade venner den perfekte turen! </p>
+            <!-- Tenker å lage denne knappen stor, og at den skal ligge til høyre for teksten -->
+              <a href="{{url_for('map')}}" class="btn btn-primary">Planlegg tur!</a>
+              <a href="{{url_for('login')}}" class="btn btn-primary">Logg inn!</a>
+              <a href="{{url_for('registration')}}" class="btn btn-primary">Registrer deg!</a>
+
+          </div>
+        </div>
+
+
+    </div>
+    <div id="section2" class="container-fluid">
         <div id="Carousel" class="carousel slide" data-ride="carousel">
 
              <!-- Indicators -->
@@ -75,12 +96,6 @@
                 <span class="sr-only">Next</span>
                     </a>
         </div>
-    </div>
-
-    <div id="section2" class="container-fluid">
-        <img src="http://i64.tinypic.com/4hzerq.jpg" alt="Image" style="width: 1080px">
-        <h1 align="center" style="color: white; margin-top: -100px"> Kanskje vi vil ha en søkefunksjon her? </h1>
-        <p align="center" style="color: white;"> Lian - Bymarka </p>
     </div>
 
       <div id="section3" class="container-fluid">
