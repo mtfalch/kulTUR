@@ -146,7 +146,7 @@ def registration():
 @login_required
 def user(username):
 	user = User.query.filter_by(username=username).first_or_404()
-	trips = db.session.query('id', 'time', 'rutenavn','objtype').from_statement(text('''SELECT Trips.id, Trips.time, Tracks.rutenavn, Tracks.objtype FROM Tracks, Trips, User WHERE gid = track_id AND Trips.user_id = User.id;''')).all()
+	trips = db.session.query('id', 'time', 'rutenavn','objtype').from_statement(text('''SELECT id, time, Tracks.rutenavn, Tracks.objtype FROM Tracks, (SELECT t.id as id, t.time as time, t.track_id as track_id FROM Trips as t, User as u WHERE user_id = id) as merge WHERE gid = track_id;''')).all()
 	
 	return render_template('user.html', user=user, trips=trips)
 
