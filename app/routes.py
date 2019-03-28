@@ -1,5 +1,5 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify
-from geoalchemy2 import Geometry, func
+from geoalchemy2 import func
 from werkzeug.urls import url_parse
 from app import app, db
 from flask_login import current_user, login_user, logout_user, login_required
@@ -8,6 +8,7 @@ from app.models import User, Tracks, Trips
 from json import loads
 from datetime import datetime
 from geojson import FeatureCollection, Feature
+from sqlalchemy import text
 
 @app.route('/')
 @app.route('/index')
@@ -126,23 +127,8 @@ def registration():
 @login_required
 def user(username):
 	user = User.query.filter_by(username=username).first_or_404()
-	#trips = db.session.query(Trips).filter(Trips).\.from_self().\
-    #join(Tracks.gid).filter(Trips)
-
-
-	#for trip in trips:
-	#	track = db.session.query(Tracks.gid, Tracks.rutenavn, Tracks.objtype).filter_by(gid=trip.track_id).all()
-	#trips = Trips.query(Trips, Tracks).join(Trips.id == Tracks.gid).query.filter_by(user_id = user.get_id()).all()
-
-	# i tracks vil vi hente alle tracks som har en id som finnes i et av trips objektene
-	# Må kanskje iterere gjennom trips og hente track_id. For hver trackid utføre en spørring som henter
-	# tracks.gid = trips.track_id
-	# Join?
-	#tracks = [loads(trips[0]) for r in res]
-
-	#select Tracks.rutenavn, Tracks.objtype
-	#from Tracks JOIN Trips on Tracks.gid = Trips.track_id
-	#join User on Trips.user_id = user.get_id()
+	trips = db.session.query('id', 'time', 'rutenavn','objtype').from_statement(text('''SELECT Trips.id, Trips.time, Tracks.rutenavn, Tracks.objtype FROM Tracks, Trips WHERE gid = track_id;''')).all()
+	
 	return render_template('user.html', user=user, trips=trips)
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
