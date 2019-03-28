@@ -71,8 +71,11 @@
                 date: today,
                 lid: lokalid,
             },
-            complete: {
-                
+            success: function() {
+                alert('For deg som er logget inn: Turen er registrert. Om du ikke var innlogget må du gjøre dette for å få registrert en tur.')
+            },
+            error: function() {
+                alert('du må logge inn')
             }
         })
     }
