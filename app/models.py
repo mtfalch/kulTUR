@@ -16,7 +16,7 @@ class User(UserMixin, db.Model):
     tlf = db.Column(db.Integer, unique=True)
     sex = db.Column(db.String(64))
     password_hash = db.Column(db.String(128))
-    trips = db.relationship('UserTrips', backref='owner', lazy='dynamic')
+    trips = db.relationship('Trips', backref='owner', lazy='dynamic')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -27,17 +27,6 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
-class UserTrips(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    comment = db.Column(db.String(250))
-    time = db.Column(db.Date, index=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    route_id = db.Column(db.Integer, db.ForeignKey('route.id'))
-
-
-class Route(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    trips = db.relationship('UserTrips', backref='TripRoute', lazy='dynamic')
 
 class Tracks(db.Model):
     __tablename__ = 'tracks'
@@ -58,6 +47,17 @@ class Tracks(db.Model):
     skilting = db.Column(db.String(3))
     rutebetydn = db.Column(db.SMALLINT)
     geog = db.Column(Geography(geometry_type='LINESTRING'))
+    trips = db.relationship('Trips', backref='Triptrack', lazy='dynamic')
 
     def __repr__(self):
         return '{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}'.format(self.gid, self.rutenavn, self.rutenummer, self.spes_fotru, self.gradering, self.rutemerkin, self.rutefolger, self.oppdatdato, self.belysning, self.lokalid, self.navnerom, self.noyaktighe, self.synbarhet, self.objtype, self.skilting, self.rutebetydn, self.geog)
+
+
+
+
+class Trips(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String(250))
+    time = db.Column(db.Date, index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    track_id = db.Column(db.Integer, db.ForeignKey('tracks.gid'))
