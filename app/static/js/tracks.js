@@ -1,104 +1,102 @@
 
-var turLayer = null;
-var data = null;
 
-function highlightFeature(e) {
-  var layer = e.target;
+    var turLayer = null;
+    var data = null;
 
-  layer.setStyle({
-    //stroke: true,
-    weight: 10,
-    dashArray: '',
-    opacity: 0.7,
-    color: '#FFA061'
+    function highlightFeature(e) {
+        var layer = e.target;
 
-  });
+        layer.setStyle({
+            //stroke: true,
+            weight: 10,
+            dashArray: '',
+            opacity: 0.7,
+            color: '#FFA061'
 
-  if (!L.Browser.ie && !L.Browser.opera) {
-    layer.bringToFront();
-  }
-}
+        });
 
-function resetHighlight(e) {
-  var layer = e.target;
-
-  layer.setStyle({
-      weight: 4,
-      color: '#FFA061',
-      dashArray: '',
-      opacity: 1
-  });
-}
-
-function clickOn(e){
-    var layer = e.target;
-    console.log(layer)
-}
-
-function clicked(feature){
-    // må endre så de som tas inn er feature.gid. Sette id = features. Ikke coord. Eller?
-    console.log('clicked')
-    coords = feature;
-
-    today = new Date();
-    dd = String(today.getDate()).padStart(2, '0');
-    mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    yyyy = today.getFullYear();
-    today = dd + mm + yyyy;
-
-
-
-    $.ajax({
-        url: 'http://localhost:5000/usertrips',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        type: 'POST',
-        data: {
-            'date': today
-        },
-        success: function () {
-            alert('Tur er registrert.')
-        },
-        error: function () {
-            alert('Du må være logget inn for å registrere tur')
+        if (!L.Browser.ie && !L.Browser.opera) {
+            layer.bringToFront();
         }
-    })
-}
+    }
 
-function onEachFeature2(feature, layer) {
-    coord = feature.coordinates
-    layer.bindPopup('Her må vi hente ut info om turen!! <br><br><button type="button" onclick=clicked(coord)> Legg til tur </button>'),
-    layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
+    function resetHighlight(e) {
+        var layer = e.target;
 
-    });
-}
-
-function get_data() {
-    console.log('running');
-    data = $.ajax({
-            url: 'http://localhost:5000/tracks',// må endres for localhost/heroku. 'https://kulturen.herokuapp.com/tracks'
-            type: 'GET',
-            datatype: 'json'
-    })
-
-    $.when(data).done(function (res) {
-
-        turLayer = L.geoJSON(res, {onEachFeature: onEachFeature2});
-
-        turLayer.setStyle({
+        layer.setStyle({
             weight: 4,
             color: '#FFA061',
             dashArray: '',
-            Opacity: 1
+            opacity: 1
+        });
+    }
+
+    function onEachFeature2(feature, layer) {
+        var lid = feature.properties.LOKALID
+        var link = $('<a href="#" class="speciallink">Velg denne turen</a>').click(function() {
+            clicked(lid)
+        })[0];
+
+        layer.bindPopup(link)
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight
+        });
+
+    }
+
+    function clicked(variabel) {
+        console.log('clicked')
+        console.log(variabel)
+        var lokalid = variabel;
+        console.log(lokalid)
+
+        var today = new Date();
+        dd = String(today.getDate()).padStart(2, '0');
+        mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        yyyy = today.getFullYear();
+        today = dd + mm + yyyy;
+        console.log(typeof(today))
+
+        $.ajax({
+            url: 'http://localhost:5000/usertrips',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            type: 'POST',
+            data: {
+                date: today,
+                lid: lokalid,
+            },
+            complete: {
+                
+            }
         })
-    });
-}
+    }
+
+    function get_data() {
+        console.log('running');
+        data = $.ajax({
+            url: 'http://localhost:5000/tracks',// må endres for localhost/heroku. 'https://kulturen.herokuapp.com/tracks'
+            type: 'GET',
+            datatype: 'json'
+        })
+
+        $.when(data).done(function (res) {
+
+            turLayer = L.geoJSON(res, {onEachFeature: onEachFeature2});
+
+            turLayer.setStyle({
+                weight: 4,
+                color: '#FFA061',
+                dashArray: '',
+                Opacity: 1
+            })
+        });
+    }
 
 // ON/OFF tracks
-function addDataToMap(checkboxElem) {
+    function addDataToMap(checkboxElem) {
 
         if (checkboxElem.checked) {
             console.log('Checked')
@@ -108,17 +106,6 @@ function addDataToMap(checkboxElem) {
             console.log('Not checked')
             map.removeLayer(turLayer);
         }
-}
-
-
-
-function toggletracks(data) {
-    var data = L.geoJSON(data.responseJSON, {onEachFeature: onEachFeature})
-    if (checkboxElem.checked) {
-        map.addLayer(data)
-        map.fitBounds(data.getBounds())
-    } else {
-        map.removeLayer(data);
     }
-}
-window.onload = get_data();
+
+    window.onload = get_data();
