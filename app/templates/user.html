@@ -31,8 +31,8 @@
         </div>
 </div>
 <div class="container">
-    <div class="col-sm-6">
-    <form class="well form-horizontal" action=" " method="post"  id="contact_form" style=" background-color: rgba(255, 255, 255, 0.1)">
+    <div class="col-sm-4">
+    <form class="well form-horizontal" action=" " method="post"  id="contact_form" style=" width: 400px;background-color: rgba(255, 255, 255, 0.1)">
     <fieldset>
         <h3><b>Din profil</b></h3><br>
          <div class="table-responsive" style="border-color: white">
@@ -69,8 +69,8 @@
     </fieldset>
     </form>
     </div>
-    <div class="col-sm-6">
-    <div class="well form-horizontal" style="background-color: rgba(255, 255, 255, 0.1); height: 320px;" >
+    <div class="col-sm-8">
+    <div class="well form-horizontal" style="background-color: rgba(255, 255, 255, 0.1); height: 320px; width: 800px" >
         <h3><b> Dine turer </b></h3>
         <div class="pre-scrollable" style="height: 200px; border-bottom: 0px">
              {% for trip in trips %}
@@ -81,6 +81,10 @@
                         <td>{{trip.id}}
                         <td>Dato:</td>
                         <td>{{trip.time}}
+                        <td>Rutenavn:</td>
+                        <td>{{trip.rutenavn}}
+                        <td>Type:</td>
+                        <td>{{trip.objtype}}
                     <tr>
                 </table>
              </div>
