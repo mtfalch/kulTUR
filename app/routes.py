@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request, jsonify
+from flask import render_template, flash, redirect, url_for, request, jsonify, Response
 from geoalchemy2 import Geometry, func
 from werkzeug.urls import url_parse
 from app import app, db
@@ -77,9 +77,11 @@ def usertrips():
 							 track_id = gid)
 		db.session.add(usertrip)
 		db.session.commit()
-		return 'ok'
+		flash('Turen er registrert')
+		return render_template('map.html', title='map')
 	else:
 		flash('Du må logge inn for å registrere tur')
+		return 302
 
 
 @app.route('/login', methods=['GET', 'POST'])
