@@ -56,13 +56,24 @@ def winter():
 @login_required
 def usertrips():
 	data = request.data.decode('UTF-8')
-	datedata = data.replace('date=','')
+	variabel = data.split('&')
+
+	datedata = variabel[0]
+	liddata = variabel[1]
+
+	datedata = datedata.replace('date=','')
 	today = datetime.strptime(datedata, '%d%m%Y').date()
+
+	liddata = liddata.replace('lid=', '')
+	print(liddata)
+	gid = db.session.query(Tracks.gid).filter(Tracks.lokalid == liddata) # dette er riktig
+	print(gid)
+
 	user = current_user.get_id()
 	usertrip = Trips(comment = ' ',
 						 time = today,
 						 user_id = user,
-						 track_id = 1)
+						 track_id = gid)
 	db.session.add(usertrip)
 	db.session.commit()
 	return 'ok'
@@ -113,7 +124,7 @@ def registration():
 def user(username):
 	user = User.query.filter_by(username=username).first_or_404()
 	trips = Trips.query.filter_by(user_id = user.get_id()).all()
-	print(type(trips[1]))
+
 
 	for trip in trips:
 		track = db.session.query(Tracks.rutenavn, Tracks.objtype).filter_by(gid=trip.track_id).all()
