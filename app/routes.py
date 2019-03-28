@@ -127,7 +127,7 @@ def registration():
 def user(username):
 	user = User.query.filter_by(username=username).first_or_404()
 	trips = Trips.query.filter_by(user_id = user.get_id()).all()
-	print(type(trips[1]))
+
 
 	for trip in trips:
 		track = db.session.query(Tracks.rutenavn, Tracks.objtype).filter_by(gid=trip.track_id).all()

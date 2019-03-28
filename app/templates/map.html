@@ -4,18 +4,9 @@
 <head><link rel="stylesheet" href="static/css/toggle.css"></head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span12">
+<div id="map" class="map">
 
-        </div>
-        <div class="col-md-12">
 
-        </div>
-        <div id="map" class="map">
-
-        </div>
-    </div>
 </div>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
@@ -26,24 +17,9 @@
 <!--<script src="static/js/bymarka.js"></script>-->
 <script type="text/javascript" src="static/js/map.js"></script>
 
-<div class="container" style="position: fixed; top: 150px; width: 200px; transform: translate3d(-200px, 0, 0)">
+<div class="container" style="position: fixed; bottom: 100px; width: 200px; background: rgb(255, 255, 255, 0.3);  transform: translate3d(0px, 0, 0); z-index: 10">
 
-    <p>Rutenavn</p>
-    <div class="form-group">
-       <script type="text/javascript" src="static/js/toggle.js"></script>
-       <form action=";"> <!-- her må det legges inn funksjonen som gjør søk -->
-           <select class="form-control" id="exampleFormControlSelect1">
-               <option id="Bymarka">Bymarka</option>
-               <option id="Kystpilegrimsleia">Kystpilegrimsleia</option>
-               <option id="Pilegrimsleden-St.Olavsleden">Pilegrimsleden-St.Olavsleden</option>
-               <option id="Pilegrimsleden-Romboleden">Pilegrimsleden-Romboleden</option>
-               <option id="Pilegrimsleden-Gudbrandsdalsleden">Pilegrimsleden-Gudbrandsdalsleden</option>
-           </select><br>
-           <button type="submit" onclick="">søk</button>
-       </form>
-   </div>
-    <br>
-    <!--<input type="text" id="myInput" onkeyup="search()" placeholder="Søk..">
+        <!--<input type="text" id="myInput" onkeyup="search()" placeholder="Søk..">
     <input type="search" id="Input" onsearch="successCallback()">-->
     <div>
     <br>
@@ -95,6 +71,10 @@
             </label>
             &nbsp&nbsp&nbsp&nbsp&nbsp<font size="4">Skiturer</font>
         </form>
+    </div>
+    <br>
+    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+      <a href="https://github.com/mtfalch/kulTUR"> kulTUR </a>
     </div>
 </div>
 
