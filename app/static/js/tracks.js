@@ -34,13 +34,13 @@
     function onEachFeature2(feature, layer) {
         var lid = feature.properties.LOKALID
         var rutenavn = '<h5><span class="glyphicon glyphicon-tree-conifer"></span> '+feature.properties.RUTENAVN+' ('+feature.properties.OBJTYPE+')</h5>'
-        var chooseTrip = '<h4><span class="glyphicon glyphicon-map-marker"></span><a href="#" class="speciallink"> Velg denne turen</a></h4>'
+
+        var chooseTrip = '<h5><span class="glyphicon glyphicon-map-marker"></span><a id ="link" href="#" class="speciallink"> Velg denne turen</a></h5>'
         var link = $(chooseTrip).click(function() {
             clicked(lid)
         })[0];
-        var res = rutenavn+chooseTrip
-
-        layer.bindPopup(res)
+        layer.bindPopup(link)
+        layer.bindTooltip(rutenavn)
         layer.on({
             mouseover: highlightFeature,
             mouseout: resetHighlight
