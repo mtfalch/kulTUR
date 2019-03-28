@@ -32,6 +32,23 @@ def get_tracks():
 
 	return jsonify(res)
 
+@app.route('/usertrips')
+def get_user_trips():
+	query = db.session.query('geog').from_statement(text(
+		'''SELECT Tracks.geog FROM Tracks, Trips WHERE track_id = gid;''')).all()
+	for q in query:
+		print(q)
+
+	res = dict(features=loads(query[0]))
+	#res = FeatureCollection([])
+
+	#for i, q in enumerate(query):
+	#	new = Feature(geometry=loads(q[0]))
+	#	res['features'].append(new)
+
+	print(res)
+	return jsonify(res)
+
 @app.route('/tracks/summer')
 def summer():
 	res = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).filter(Tracks.objtype == 'Fotrute').all();
@@ -129,7 +146,7 @@ def registration():
 @login_required
 def user(username):
 	user = User.query.filter_by(username=username).first_or_404()
-	trips = db.session.query('id', 'time', 'rutenavn','objtype').from_statement(text('''SELECT Trips.id, Trips.time, Tracks.rutenavn, Tracks.objtype FROM Tracks, Trips WHERE gid = track_id;''')).all()
+	trips = db.session.query('id', 'time', 'rutenavn','objtype').from_statement(text('''SELECT Trips.id, Trips.time, Tracks.rutenavn, Tracks.objtype FROM Tracks, Trips, User WHERE gid = track_id AND Trips.user_id = User.id;''')).all()
 	
 	return render_template('user.html', user=user, trips=trips)
 
