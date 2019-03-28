@@ -4,8 +4,10 @@ from werkzeug.urls import url_parse
 from app import app, db
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms import SignUpForm, LoginForm, EditProfileForm, EditTlfForm, EditNameForm, EditEmailForm, EditSexForm
-from app.models import User, Tracks
+from app.models import User, Tracks, Trips
 from json import loads
+from datetime import datetime
+from geojson import FeatureCollection, Feature
 
 @app.route('/')
 @app.route('/index')
@@ -20,9 +22,13 @@ def map():
 
 @app.route('/tracks')
 def get_tracks():
-	res = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).all()
-	res = [loads(r[0]) for r in res]
-	res = dict(type='FeatureCollection', features=res)
+	query = db.session.query(Tracks.lokalid, func.ST_AsGeoJSON(Tracks.geog)).all()
+	res = FeatureCollection([])
+
+	for i, q in enumerate(query):
+		new = Feature(properties={"LOKALID": q[0]}, geometry=loads(q[1]))
+		res['features'].append(new)
+
 	return jsonify(res)
 
 @app.route('/tracks/summer')
@@ -46,6 +52,20 @@ def winter():
 #	res = dict(type='FeatureCollection', features=res)
 #	return jsonify(res)
 
+@app.route('/usertrips', methods=['POST'])
+@login_required
+def usertrips():
+	data = request.data.decode('UTF-8')
+	datedata = data.replace('date=','')
+	today = datetime.strptime(datedata, '%d%m%Y').date()
+	user = current_user.get_id()
+	usertrip = Trips(comment = ' ',
+						 time = today,
+						 user_id = user,
+						 track_id = 1)
+	db.session.add(usertrip)
+	db.session.commit()
+	return 'ok'
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -92,9 +112,23 @@ def registration():
 @login_required
 def user(username):
 	user = User.query.filter_by(username=username).first_or_404()
-	return render_template('user.html', user=user)
+	trips = Trips.query.filter_by(user_id = user.get_id()).all()
+	print(type(trips[1]))
 
+	for trip in trips:
+		track = db.session.query(Tracks.rutenavn, Tracks.objtype).filter_by(gid=trip.track_id).all()
+		print(type(track))
+		
+	# i tracks vil vi hente alle tracks som har en id som finnes i et av trips objektene
+	# Må kanskje iterere gjennom trips og hente track_id. For hver trackid utføre en spørring som henter
+	# tracks.gid = trips.track_id
+	# Join?
+	#tracks = [loads(trips[0]) for r in res]
 
+	#select Tracks.rutenavn, Tracks.objtype
+	#from Tracks JOIN Trips on Tracks.gid = Trips.track_id
+	#join User on Trips.user_id = user.get_id()
+	return render_template('user.html', user=user, trips=trips)
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required

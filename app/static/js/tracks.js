@@ -35,18 +35,44 @@ function clickOn(e){
     console.log(layer)
 }
 
-function clicked(){
-    // Her må det være funksjonalitet for å legge til i tur
+function clicked(feature){
+    // må endre så de som tas inn er feature.gid. Sette id = features. Ikke coord. Eller?
     console.log('clicked')
-    
+    coords = feature;
+
+    today = new Date();
+    dd = String(today.getDate()).padStart(2, '0');
+    mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    yyyy = today.getFullYear();
+    today = dd + mm + yyyy;
+
+
+
+    $.ajax({
+        url: 'http://localhost:5000/usertrips',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        type: 'POST',
+        data: {
+            'date': today
+        },
+        success: function () {
+            alert('Tur er registrert.')
+        },
+        error: function () {
+            alert('Du må være logget inn for å registrere tur')
+        }
+    })
 }
 
 function onEachFeature2(feature, layer) {
-    layer.bindPopup('Her må vi hente ut info om turen!! <br><br><button type="button" onclick="clicked()"> Legg til tur </button>'),
+    coord = feature.coordinates
+    layer.bindPopup('Her må vi hente ut info om turen!! <br><br><button type="button" onclick=clicked(coord)> Legg til tur </button>'),
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
-        click: clickOn,
+
     });
 }
 
