@@ -4,29 +4,23 @@
 {% block app_content %}
 
 <head>
-    <style>
-        #section1 {margin-top: 30px; margin-bottom: 240px; height:450px; width: 1110px; background-color: white;}
-        #section2 {margin-bottom: 40px; height:450px; width: 1100px; background-color: white; align-items: center}
-        #section3 {margin-left: 15px;margin-bottom: 40px;height:300px; width: 1085px; background-color: rgba(200, 255, 200, 0.5);}
-    </style>
+
 </head>
 
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="0">
 
-<div class="container" style="position: fixed; top: 250px; width: 50%; transform: translate3d(-200px, 0, 0)">
-    <div class="row">
-        <nav class="col-sm-3" id="myScrollspy">
-            <ul class="nav nav-pills nav-stacked">
+<div class="col-sm-2" id="myScrollspy">
+    <div class="sidenav" style="position: fixed;">
+        <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a href="#section1">Ukas turbilder</a></li>
                 <li><a href="#section2"> Finn en kul tur</a></li>
                 <li><a href="#section3">Mer fra kulTUR</a></li>
                 </li>
-            </ul>
-        </nav>
-    </div>
+        </ul>
+        </div>
 </div>
 
-<div class="col-sm-9">
+<div class="col-sm-10">
     <div id="section1" class="container-fluid">
         <div id="Carousel" class="carousel slide" data-ride="carousel">
 
@@ -79,10 +73,11 @@
 
     <div id="section2" class="container-fluid">
         <a href="{{url_for('map')}}">
-                <img class="card-img-top" src="http://i65.tinypic.com/21b0j8y.jpg" alt="Card image cap">
-        </a>
+                <img class="img-responsive"  src="http://i65.tinypic.com/21b0j8y.jpg"  alt="Card image cap">
+
         <h1 align="center" style="background: rgba(255, 255, 255, 0.0); color: black; margin-top: -100px"> Din neste kule tur - ett klikk unna! </h1>
-        <p align="center" style="color: white;"> Marka </p>
+        </a>
+            <p align="center" style="color: white;"> Marka </p>
     </div>
 
       <div id="section3" class="container-fluid">
