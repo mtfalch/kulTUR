@@ -81,7 +81,7 @@ def usertrips():
 		return render_template('map.html', title='map')
 	else:
 		flash('Du må logge inn for å registrere tur')
-		return 302
+		return redirect(url_for('login'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
