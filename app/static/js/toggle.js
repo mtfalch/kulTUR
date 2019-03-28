@@ -1,6 +1,6 @@
 var group = L.geoJSON(cabins, {
     onEachFeature: function (feature, layer) {
-        layer.bindPopup('<b>'+feature.properties.name+'</b><p> Åpningstider: '+feature.properties.open+'</p>');
+        layer.bindPopup('<h3><span class="glyphicon glyphicon-home"></span> '+feature.properties.name+'</h3><p> Åpningstider: '+feature.properties.open+'</p>');
     }
 })
 

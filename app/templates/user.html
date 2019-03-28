@@ -1,29 +1,14 @@
-{% extends "base.html" %}}
+{% extends "base.html" %}
 
 {% block app_content %}
 
 <div class="container">
-    {% for trip in trips %}
-    <div class="thumbnail">
-            <img src="http://i67.tinypic.com/sq11e9.jpg" alt="Lights" style="width:100%">
-            <div class="caption">
-                {{trip.time}} <br>
-                {{trip.id}} <br>
-               <br>
-            </div>
-    </div>
 
-    {% endfor %}
-
-    <br>
-    <br>
-    <!-- legge inn kart her? -->
-
-    <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+    <form class="well form-horizontal" action=" " method="post"  id="contact_form" style=" width: 500px; background-color: rgba(255, 255, 255, 0.1)">
     <fieldset>
         <h3><b>Din profil</b></h3><br>
-         <div class="table-responsive">
-            <table class="table">
+         <div class="table-responsive" style="border-color: white">
+            <table class="table table-hove  r">
                 <tr>
                     <td>Brukernavn:</td>
                     <td>{{user.username}}</td>
@@ -54,6 +39,35 @@
          </div>
     </fieldset>
     </form>
+
+    <div class="well form-horizontal" style="background-color: rgba(255, 255, 255, 0.1);width: 500px; height: 300px;" >
+        <h3><b> Dine turer </b></h3>
+        <div class="pre-scrollable" style="height: 200px; border-bottom: 0px">
+             {% for trip in trips %}
+            <div class="table-responsive" style="height: 60px">
+                <table class="table table-hover">
+                    <tr>
+                        <td>ID:</td>
+                        <td>{{trip.id}}
+                        <td>Dato:</td>
+                        <td>{{trip.time}}
+                    <tr>
+                </table>
+             </div>
+            <!--
+            <div class="thumbnail">
+                    <div class="caption">
+                        {{trip.time}} <br>
+                        {{trip.id}} <br>
+                       <br>
+                    </div>
+            </div> -->
+            {% endfor %}
+      </div>
+    </div>
+
+
 </div>
+
 
 {% endblock %}

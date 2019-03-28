@@ -22,11 +22,11 @@ def map():
 
 @app.route('/tracks')
 def get_tracks():
-	query = db.session.query(Tracks.lokalid, func.ST_AsGeoJSON(Tracks.geog)).all()
+	query = db.session.query(Tracks.lokalid, Tracks.rutenavn, Tracks.objtype, func.ST_AsGeoJSON(Tracks.geog)).all()
 	res = FeatureCollection([])
 
 	for i, q in enumerate(query):
-		new = Feature(properties={"LOKALID": q[0]}, geometry=loads(q[1]))
+		new = Feature(properties={"LOKALID": q[0], "RUTENAVN": q[1], "OBJTYPE": q[2]}, geometry=loads(q[3]))
 		res['features'].append(new)
 
 	return jsonify(res)
@@ -128,13 +128,14 @@ def registration():
 @login_required
 def user(username):
 	user = User.query.filter_by(username=username).first_or_404()
-	trips = Trips.query.filter_by(user_id = user.get_id()).all()
+	#trips = db.session.query(Trips).filter(Trips).\.from_self().\
+    #join(Tracks.gid).filter(Trips)
 
 
-	for trip in trips:
-		track = db.session.query(Tracks.rutenavn, Tracks.objtype).filter_by(gid=trip.track_id).all()
-		print(type(track))
-		
+	#for trip in trips:
+	#	track = db.session.query(Tracks.gid, Tracks.rutenavn, Tracks.objtype).filter_by(gid=trip.track_id).all()
+	#trips = Trips.query(Trips, Tracks).join(Trips.id == Tracks.gid).query.filter_by(user_id = user.get_id()).all()
+
 	# i tracks vil vi hente alle tracks som har en id som finnes i et av trips objektene
 	# Må kanskje iterere gjennom trips og hente track_id. For hver trackid utføre en spørring som henter
 	# tracks.gid = trips.track_id
