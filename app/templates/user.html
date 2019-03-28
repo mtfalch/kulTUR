@@ -1,10 +1,38 @@
 {% extends "base.html" %}
 
 {% block app_content %}
+<head>
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+   integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+   crossorigin=""></script>
+    <style>
+        #usermap{position: relative; heigth:20px; width: 100%;}
+    </style>
+</head>
+<div class="container" style="height:300px; margin-top: 10px">
+    <div id="usermap">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br>
 
+
+        </div>
+</div>
 <div class="container">
-
-    <form class="well form-horizontal" action=" " method="post"  id="contact_form" style=" width: 500px; background-color: rgba(255, 255, 255, 0.1)">
+    <div class="col-sm-5">
+    <form class="well form-horizontal" action=" " method="post"  id="contact_form" style="background-color: rgba(255, 255, 255, 0.1)">
     <fieldset>
         <h3><b>Din profil</b></h3><br>
          <div class="table-responsive" style="border-color: white">
@@ -37,20 +65,23 @@
                 <tr>
             </table>
          </div>
+
     </fieldset>
     </form>
-
-    <div class="well form-horizontal" style="background-color: rgba(255, 255, 255, 0.1);width: 500px; height: 300px;" >
-        <h3><b> Dine turer </b></h3>
+    </div>
+    <div class="col-sm-7">
+    <div class="well form-horizontal" style="background-color: rgba(255, 255, 255, 0.1); height: 320px;" >
+        <h3><strong> Dine turer </strong></h3>
+        <br>
         <div class="pre-scrollable" style="height: 200px; border-bottom: 0px">
              {% for trip in trips %}
             <div class="table-responsive" style="height: 60px">
                 <table class="table table-hover">
                     <tr>
-                        <td>ID:</td>
                         <td>{{trip.id}}
-                        <td>Dato:</td>
                         <td>{{trip.time}}
+                        <td>{{trip.rutenavn}}
+                        <td>{{trip.objtype}}
                     <tr>
                 </table>
              </div>
@@ -65,9 +96,11 @@
             {% endfor %}
       </div>
     </div>
-
-
+    </div>
 </div>
 
+
+
+<script type="text/javascript" src="../static/js/usermap.js"></script>
 
 {% endblock %}
