@@ -7,6 +7,7 @@ from app.forms import SignUpForm, LoginForm, EditProfileForm, EditTlfForm, EditN
 from app.models import User, Tracks, Trips
 from json import loads
 from datetime import datetime
+from geojson import FeatureCollection, Feature
 
 @app.route('/')
 @app.route('/index')
@@ -21,9 +22,13 @@ def map():
 
 @app.route('/tracks')
 def get_tracks():
-	res = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).all()
-	res = [loads(r[0]) for r in res]
-	res = dict(type='FeatureCollection', features=res)
+	query = db.session.query(Tracks.lokalid, func.ST_AsGeoJSON(Tracks.geog)).all()
+	res = FeatureCollection([])
+
+	for i, q in enumerate(query):
+		new = Feature(properties={"LOKALID": q[0]}, geometry=loads(q[1]))
+		res['features'].append(new)
+
 	return jsonify(res)
 
 @app.route('/tracks/summer')
