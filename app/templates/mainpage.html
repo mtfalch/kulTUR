@@ -6,15 +6,15 @@
 <head>
 
 </head>
-
+<div class="container">
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="150">
-
 <div class="col-sm-2" id="myScrollspy">
-    <div class="sidenav" style="position: fixed;">
+    <div class="sidenav" style="position: fixed; margin-top: 50px">
         <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a href="#section1"> Ukas turbilder </a></li>
                 <li><a href="#section2"> Finn en kul tur </a></li>
                 <li><a href="#section3"> Bruk fjellvett </a></li>
+                <li><a href="#section4"> Sjekk været </a></li>
                 </li>
         </ul>
 
@@ -23,6 +23,11 @@
 </div>
 
 <div class="col-sm-10">
+    <div class="container-fluid">
+        <div class="well well-sm" style="background-color: rgba(79, 142, 205, 0.1)">
+            <h1>kulTUR - stedet for dine <em>kule</em> turer</h1>
+        </div>
+    </div>
     <div id="section1" class="container-fluid" style="margin-bottom: 200px">
         <div id="Carousel" class="carousel slide" data-ride="carousel">
 
@@ -81,7 +86,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-sm-4" style="positin: ">
+        <div class="col-sm-4">
             <br>
             <br>
             <h2><strong>kulTUR:</strong></h2>
@@ -115,10 +120,18 @@
 
     </div>
 
+    <div id="section4" class="container-fluid" style="margin-bottom: 200px;">
+        <a class="weatherwidget-io" href="https://forecast7.com/en/63d4310d40/trondheim/" data-label_1="TRONDHEIM" data-label_2="WEATHER" data-theme="original" >TRONDHEIM WEATHER</a>
+            <script>
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+            </script>
+    </div>
+
 </div>
 
 </body>
-<footer class="page-footer font-small blue pt-4" >
+</div>
+    <footer class="page-footer font-small blue pt-4" >
 
 
     <!-- Footer Links -->
@@ -132,7 +145,7 @@
 
           <!-- Content -->
           <h5 class="text-uppercase">Ved veis ende</h5>
-          <p>Kom tilbake for å legge inn din tur!</p>
+          <p>Kom tilbake for å planlegge din neste tur!</p>
 
         </div>
         <!-- Grid column -->
