@@ -7,21 +7,23 @@
 
 </head>
 
-<body data-spy="scroll" data-target="#myScrollspy" data-offset="0">
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="150">
 
 <div class="col-sm-2" id="myScrollspy">
     <div class="sidenav" style="position: fixed;">
         <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#section1">Ukas turbilder</a></li>
-                <li><a href="#section2"> Finn en kul tur</a></li>
-                <li><a href="#section3">Mer fra kulTUR</a></li>
+                <li class="active"><a href="#section1"> Ukas turbilder </a></li>
+                <li><a href="#section2"> Finn en kul tur </a></li>
+                <li><a href="#section3"> Bruk fjellvett </a></li>
                 </li>
         </ul>
+
         </div>
+
 </div>
 
 <div class="col-sm-10">
-    <div id="section1" class="container-fluid">
+    <div id="section1" class="container-fluid" style="margin-bottom: 200px">
         <div id="Carousel" class="carousel slide" data-ride="carousel">
 
              <!-- Indicators -->
@@ -71,27 +73,107 @@
         </div>
     </div>
 
-    <div id="section2" class="container-fluid">
-        <a href="{{url_for('map')}}">
-                <img class="img-responsive"  src="http://i65.tinypic.com/21b0j8y.jpg"  alt="Card image cap">
+    <div id="section2" class="container-fluid" style="margin-bottom: 200px;">
+        <div class="col-sm-8">
+            <div class="mapimg" style="background-color: rgba(200, 255, 200, 0.5)">
+                <a href="{{url_for('map')}}">
+                    <img src="http://i64.tinypic.com/2vs4369.jpg" class="img-responsive">
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-4" style="positin: ">
+            <br>
+            <br>
+            <h2><strong>kulTUR:</strong></h2>
+            <h4>Din neste kule tur <br> - bare et klikk unna!</h4>
+            <br>
 
-        <h1 align="center" style="background: rgba(255, 255, 255, 0.0); color: black; margin-top: -100px"> Din neste kule tur - ett klikk unna! </h1>
-        </a>
-            <p align="center" style="color: white;"> Marka </p>
+            <br>
+            <a href="{{url_for('map')}}" class="btn btn-default btn-block">Planlegg din tur</a>
+        </div>
+
+
     </div>
 
-      <div id="section3" class="container-fluid">
-       <h1 align="center" style="color: darkseagreen; line-height: 350px; margin-bottom: 0px">
-           <a href="https://www.yr.no/sted/Norge/Tr%C3%B8ndelag/Trondheim/Trondheim/time_for_time.html">
+    <div id="section3" class="container-fluid" style="margin-bottom: 200px;">
+        <div class="col-sm-4">
+            <h2><strong>Bruk fjellvett</strong></h2>
+            <br>
+            <p>Ikke gå på en smell når du går ut på tur <br>Sjekk været og når turhyttene har
+                                åpningstider for å sikre deg og dine turglade venner den perfekte turen! </p>
+            <br>
 
-            Værvarsel </a></h1>
-        <p align="center" style="color: darkseagreen; margin-top: -100px"> Husk å sjekke været! </p>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="mapimg" style="background-color: rgba(200, 255, 200, 0.5)">
+                <a href="{{url_for('map')}}">
+                    <img src="http://i65.tinypic.com/11cce52.jpg" class="img-responsive">
+                </a>
+            </div>
+        </div>
 
     </div>
+
 </div>
 
-
 </body>
+<footer class="page-footer font-small blue pt-4" >
+
+
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
+
+      <!-- Grid row -->
+      <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-6 mt-md-0 mt-3">
+
+          <!-- Content -->
+          <h5 class="text-uppercase">Ved veis ende</h5>
+          <p>Kom tilbake for å legge inn din tur!</p>
+
+        </div>
+        <!-- Grid column -->
+
+        <hr class="clearfix w-100 d-md-none pb-3">
+
+          <!-- Grid column -->
+          <div class="col-md-6 mb-md-0 mb-6">
+
+            <!-- Links -->
+            <h5 class="text-uppercase">Contact us</h5>
+
+            <ul class="list-unstyled">
+              <li>
+                <p>+47 123 45 678 <a href="#!">Vilde</a></p>
+              </li>
+              <li>
+                <p>+47 123 45 678 <a href="#!">Marie</a></p>
+              </li>
+              <li>
+                <p>+47 123 45 678 <a href="#!">Marte</a></p>
+              </li>
+
+            </ul>
+
+          </div>
+          <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+      <a href="https://github.com/mtfalch/kulTUR"> kulTUR </a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
 
 
 
