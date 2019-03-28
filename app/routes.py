@@ -55,28 +55,31 @@ def winter():
 @app.route('/usertrips', methods=['POST'])
 @login_required
 def usertrips():
-	data = request.data.decode('UTF-8')
-	variabel = data.split('&')
+	if current_user.is_authenticated:
+		data = request.data.decode('UTF-8')
+		variabel = data.split('&')
 
-	datedata = variabel[0]
-	liddata = variabel[1]
+		datedata = variabel[0]
+		liddata = variabel[1]
 
-	datedata = datedata.replace('date=','')
-	today = datetime.strptime(datedata, '%d%m%Y').date()
+		datedata = datedata.replace('date=','')
+		today = datetime.strptime(datedata, '%d%m%Y').date()
 
-	liddata = liddata.replace('lid=', '')
-	print(liddata)
-	gid = db.session.query(Tracks.gid).filter(Tracks.lokalid == liddata) # dette er riktig
-	print(gid)
+		liddata = liddata.replace('lid=', '')
+		print(liddata)
+		gid = db.session.query(Tracks.gid).filter(Tracks.lokalid == liddata) # dette er riktig
+		print(gid)
 
-	user = current_user.get_id()
-	usertrip = Trips(comment = ' ',
-						 time = today,
-						 user_id = user,
-						 track_id = gid)
-	db.session.add(usertrip)
-	db.session.commit()
-	return 'ok'
+		user = current_user.get_id()
+		usertrip = Trips(comment = ' ',
+							 time = today,
+							 user_id = user,
+							 track_id = gid)
+		db.session.add(usertrip)
+		db.session.commit()
+		return 'ok'
+	else:
+		flash('Du må logge inn for å registrere tur')
 
 
 @app.route('/login', methods=['GET', 'POST'])
