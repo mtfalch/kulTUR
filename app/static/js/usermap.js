@@ -51,6 +51,9 @@ function setUserMap() {
     function get_user_trips() {
         data = $.ajax({
             url: 'https://kulturen.herokuapp.com/usertrips',// må endres for localhost/heroku. 'https://kulturen.herokuapp.com/tracks'
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
             type: 'GET',
             datatype: 'json'
         })

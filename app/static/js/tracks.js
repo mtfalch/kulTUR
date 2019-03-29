@@ -64,7 +64,8 @@
         $.ajax({
             url: 'https://kulturen.herokuapp.com/usertrips',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
             },
             type: 'POST',
             data: {
@@ -84,6 +85,9 @@
         console.log('running');
         data = $.ajax({
             url: 'https://kulturen.herokuapp.com/tracks',// må endres for localhost/heroku. 'https://kulturen.herokuapp.com/tracks'
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
             type: 'GET',
             datatype: 'json'
         })
