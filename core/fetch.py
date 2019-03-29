@@ -1,15 +1,23 @@
 from app import db
-from geoalchemy2 import Geometry, func
+from geoalchemy2 import func
 from app.models import Tracks
-from geojson import Feature, geometry
+from json import loads
+from geojson import Feature, FeatureCollection
 
+'''''
+query = db.session.query(Tracks.lokalid, func.ST_AsGeoJSON(Tracks.geog)).all()
 
+first = Feature(properties={"LOKALID": query[0][0]}, geometry=loads(query[0][1]))
+second = Feature(properties={"LOKALID": query[1][0]}, geometry=loads(query[1][1]))
+res = FeatureCollection([])
 
-query = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).first()
+for i, q in enumerate(query):
+	new = Feature(properties={"LOKALID": q[0]}, geometry=loads(q[1]))
+	res['features'].append(new)
 
+print(res.features[1].properties['LOKALID'])
+'''''
 
-
-print(query[0])
-
-#for row in query:
-#	print(row)
+query = db.session.query(Tracks.gid).all()
+for q in query:
+	print(q)

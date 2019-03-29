@@ -89,7 +89,7 @@
         })
 
         $.when(data).done(function (res) {
-
+            console.log(res)
             turLayer = L.geoJSON(res, {onEachFeature: onEachFeature2});
 
             turLayer.setStyle({

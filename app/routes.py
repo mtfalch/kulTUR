@@ -34,17 +34,22 @@ def get_tracks():
 
 @app.route('/usertrips')
 def get_user_trips():
-	query = db.session.query('geog').from_statement(text(
-		'''SELECT Tracks.geog FROM Tracks, Trips WHERE track_id = gid;''')).all()
-	for q in query:
-		print(q)
+	trips = db.session.query(
+		Tracks
+	).	join(
+		Trips
+	).join(
+		User
+	).filter(
+		User.id == current_user.get_id()
+	).with_entities (
+		Trips.id, Trips.time, Tracks.objtype, Tracks.rutenavn, func.ST_AsGeoJSON(Tracks.geog)
+	).all()
 
-	res = dict(features=loads(query[0]))
-	#res = FeatureCollection([])
-
-	#for i, q in enumerate(query):
-	#	new = Feature(geometry=loads(q[0]))
-	#	res['features'].append(new)
+	features = []
+	for t in trips:
+		features.append(loads(t[4]))
+	res = dict(features=features)
 
 	print(res)
 	return jsonify(res)
@@ -145,10 +150,6 @@ def registration():
 @app.route('/user/<username>')
 @login_required
 def user(username):
-	thisuser = User.query.filter_by(username=username).first_or_404()
-	thisuserid = current_user.get_id()
-	#print(thisuserid)
-	#Trips = db.session.query().from_statement(text('''SELECT Trips.id, time, Tracks.rutenavn, Tracks.objtype FROM Trips JOIN Tracks on (Trips.track_id=Tracks.id) JOIN "User" on "User".id=Trips.user_id WHERE "USER".id = CURRENT_USER.get_id() ''')).all()
 	trips = db.session.query(
 		Tracks
 	).	join(
@@ -163,8 +164,6 @@ def user(username):
 
 	print(trips)
 
-
-	print(trips[0])
 	return render_template('user.html', user=user, trips=trips)
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
