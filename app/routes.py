@@ -150,8 +150,9 @@ def registration():
 @app.route('/user/<username>')
 @login_required
 def user(username):
-	thisUser = User.query().filter(username=username);
-	print(thisUser)
+	user = current_user.get_id()
+	#thisUser = db.session.query().filter_by(username=username);
+	#print(thisUser)
 	trips = db.session.query(
 		Tracks
 	).	join(
@@ -166,7 +167,7 @@ def user(username):
 
 	print(trips)
 
-	return render_template('user.html', user=thisUser, trips=trips)
+	return render_template('user.html', user=user, trips=trips)
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
