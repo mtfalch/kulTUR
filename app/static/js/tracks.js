@@ -62,7 +62,7 @@
         console.log(typeof(today))
 
         $.ajax({
-            url: 'http://localhost:5000/usertrips',
+            url: 'https://kulturen.herokuapp.com/usertrips',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -83,7 +83,7 @@
     function get_data() {
         console.log('running');
         data = $.ajax({
-            url: 'http://localhost:5000/tracks',// må endres for localhost/heroku. 'https://kulturen.herokuapp.com/tracks'
+            url: 'https://kulturen.herokuapp.com/tracks',// må endres for localhost/heroku. 'https://kulturen.herokuapp.com/tracks'
             type: 'GET',
             datatype: 'json'
         })

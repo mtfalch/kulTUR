@@ -50,7 +50,7 @@ function setUserMap() {
     var userLayer = null
     function get_user_trips() {
         data = $.ajax({
-            url: 'http://localhost:5000/usertrips',// må endres for localhost/heroku. 'https://kulturen.herokuapp.com/tracks'
+            url: 'https://kulturen.herokuapp.com/usertrips',// må endres for localhost/heroku. 'https://kulturen.herokuapp.com/tracks'
             type: 'GET',
             datatype: 'json'
         })

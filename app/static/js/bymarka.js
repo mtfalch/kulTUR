@@ -5,7 +5,7 @@ var data = null;
 function get_bymarka() {
     console.log('running');
     data = $.ajax({
-            url: 'http://localhost:5000/tracks/Bymarka',
+            url: 'https://kulturen.herokuapp.com/tracks/Bymarka',
             type: 'GET',
             datatype: 'json'
     })
