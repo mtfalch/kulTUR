@@ -55,16 +55,20 @@ def get_user_trips():
 
 @app.route('/tracks/summer')
 def summer():
-	res = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).filter(Tracks.objtype == 'Fotrute').all();
-	res = [loads(r[0]) for r in res]
-	res = dict(type='FeatureCollection', features=res)
+	query = db.session.query(Tracks.lokalid, Tracks.rutenavn, Tracks.objtype, func.ST_AsGeoJSON(Tracks.geog)).filter(Tracks.objtype == 'Fotrute').all();
+	res = FeatureCollection([])
+	for i, q in enumerate(query):
+		new = Feature(properties={"LOKALID": q[0], "RUTENAVN": q[1], "OBJTYPE": q[2]}, geometry=loads(q[3]))
+		res['features'].append(new)
 	return jsonify(res)
 
 @app.route('/tracks/winter')
 def winter():
-	res = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).filter(Tracks.objtype != 'Fotrute').all();
-	res = [loads(r[0]) for r in res]
-	res = dict(type='FeatureCollection', features=res)
+	query = db.session.query(Tracks.lokalid, Tracks.rutenavn, Tracks.objtype, func.ST_AsGeoJSON(Tracks.geog)).filter(Tracks.objtype != 'Fotrute').all();
+	res = FeatureCollection([])
+	for i, q in enumerate(query):
+		new = Feature(properties={"LOKALID": q[0], "RUTENAVN": q[1], "OBJTYPE": q[2]}, geometry=loads(q[3]))
+		res['features'].append(new)
 	return jsonify(res)
 
 @app.route('/usertrips', methods=['POST'])
