@@ -31,6 +31,9 @@ function resetHighlightW(e) {
 }
 
 function onEachFeature3(feature, layer) {
+    var rutenavn = '<h5><span class="glyphicon glyphicon-tree-conifer"></span> '+feature.properties.RUTENAVN+' ('+feature.properties.OBJTYPE+')</h5>'
+    layer.bindTooltip(rutenavn)
+
     layer.on({
         mouseover: highlightFeatureW,
         mouseout: resetHighlightW,
