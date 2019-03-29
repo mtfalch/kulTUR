@@ -145,9 +145,26 @@ def registration():
 @app.route('/user/<username>')
 @login_required
 def user(username):
-	user = User.query.filter_by(username=username).first_or_404()
-	trips = db.session.query('id', 'time', 'rutenavn','objtype').from_statement(text('''SELECT id, time, Tracks.rutenavn, Tracks.objtype FROM Tracks, (SELECT t.id as id, t.time as time, t.track_id as track_id FROM Trips as t, User as u WHERE user_id = id) as merge WHERE gid = track_id;''')).all()
-	
+	thisuser = User.query.filter_by(username=username).first_or_404()
+	thisuserid = current_user.get_id()
+	#print(thisuserid)
+	#Trips = db.session.query().from_statement(text('''SELECT Trips.id, time, Tracks.rutenavn, Tracks.objtype FROM Trips JOIN Tracks on (Trips.track_id=Tracks.id) JOIN "User" on "User".id=Trips.user_id WHERE "USER".id = CURRENT_USER.get_id() ''')).all()
+	trips = db.session.query(
+		Tracks
+	).	join(
+		Trips
+	).join(
+		User
+	).filter(
+		User.id == current_user.get_id()
+	).with_entities (
+		Trips.id, Trips.time, Tracks.objtype, Tracks.rutenavn, func.ST_AsGeoJSON(Tracks.geog)
+	).all()
+
+	print(trips)
+
+
+	print(trips[0])
 	return render_template('user.html', user=user, trips=trips)
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
