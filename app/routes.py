@@ -67,13 +67,6 @@ def winter():
 	res = dict(type='FeatureCollection', features=res)
 	return jsonify(res)
 
-#@app.route('/tracks/<location>', methods=['GET'])
-#def tracks(location):
-#	res = db.session.query(func.ST_AsGeoJSON(Tracks.geog)).filter_by(rutenavn=location).first();
-#	res = [loads(r[0]) for r in res]
-#	res = dict(type='FeatureCollection', features=res)
-#	return jsonify(res)
-
 @app.route('/usertrips', methods=['POST'])
 @login_required
 def usertrips():
@@ -88,9 +81,7 @@ def usertrips():
 		today = datetime.strptime(datedata, '%d%m%Y').date()
 
 		liddata = liddata.replace('lid=', '')
-		print(liddata)
 		gid = db.session.query(Tracks.gid).filter(Tracks.lokalid == liddata) # dette er riktig
-		print(gid)
 
 		user = current_user.get_id()
 		usertrip = Trips(comment = ' ',
@@ -149,6 +140,8 @@ def registration():
 @app.route('/user/<username>')
 @login_required
 def user(username):
+
+	tuser = current_user
 	trips = db.session.query(
 		Tracks
 	).	join(
@@ -160,10 +153,7 @@ def user(username):
 	).with_entities (
 		Trips.id, Trips.time, Tracks.objtype, Tracks.rutenavn, func.ST_AsGeoJSON(Tracks.geog)
 	).all()
-
-	print(trips)
-
-	return render_template('user.html', user=user, trips=trips)
+	return render_template('user.html', user=tuser, trips=trips)
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
