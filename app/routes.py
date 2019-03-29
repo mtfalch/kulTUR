@@ -34,24 +34,23 @@ def get_tracks():
 
 @app.route('/usertrips')
 def get_user_trips():
-	trips = db.session.query(
+	query = db.session.query(
 		Tracks
-	).	join(
+	).join(
 		Trips
 	).join(
 		User
 	).filter(
 		User.id == current_user.get_id()
-	).with_entities (
-		Trips.id, Trips.time, Tracks.objtype, Tracks.rutenavn, func.ST_AsGeoJSON(Tracks.geog)
+	).with_entities(
+		Tracks.lokalid, Tracks.rutenavn, Tracks.objtype, func.ST_AsGeoJSON(Tracks.geog)
 	).all()
 
-	features = []
-	for t in trips:
-		features.append(loads(t[4]))
-	res = dict(features=features)
+	res = FeatureCollection([])
+	for i, q in enumerate(query):
+		new = Feature(properties={"LOKALID": q[0], "RUTENAVN": q[1], "OBJTYPE": q[2]}, geometry=loads(q[3]))
+		res['features'].append(new)
 
-	print(res)
 	return jsonify(res)
 
 @app.route('/tracks/summer')
